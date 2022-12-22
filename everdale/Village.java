@@ -36,9 +36,9 @@ public class Village {
         this.build(this.getCoord(X_SIZE / 10, Y_SIZE / 10), new ClayPit());
         this.build(this.getCoord(X_SIZE - X_SIZE / 10 - 1, Y_SIZE - Y_SIZE / 10 - 1), new ClayPit());
 
-        this.build(this.getCoord(X_SIZE / 2, Y_SIZE / 10), new Everglade());
-        this.build(this.getCoord(X_SIZE / 10, Y_SIZE / 2), new Everglade());
-        this.build(this.getCoord(X_SIZE / 2, Y_SIZE - Y_SIZE / 10 - 1), new Everglade());
+        this.build(this.getCoord(X_SIZE / 2, Y_SIZE / 10), new Evergrove());
+        this.build(this.getCoord(X_SIZE / 10, Y_SIZE / 2), new Evergrove());
+        this.build(this.getCoord(X_SIZE / 2, Y_SIZE - Y_SIZE / 10 - 1), new Evergrove());
 
         this.build(this.getCoord(X_SIZE - X_SIZE / 10 - 1, Y_SIZE / 10), new StonePit());
         this.build(this.getCoord(X_SIZE / 10, Y_SIZE - Y_SIZE / 10 - 1), new StonePit());

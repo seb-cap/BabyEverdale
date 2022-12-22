@@ -1,13 +1,11 @@
 package everdale;
 
 
-import java.util.Map;
-
-public class Everglade extends Producer {
+public class Evergrove extends Producer {
 
     public static final int GENERATION_TIME = 5;
 
-    public Everglade() {
+    public Evergrove() {
         super(3, GENERATION_TIME, Resource.wood);
     }
 

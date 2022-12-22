@@ -31,9 +31,11 @@ public class Game {
                 case "Inspect":
                     Inspect inspectAction = (Inspect)cur;
                     c.prompt(home.buildingAt(inspectAction.getX(), inspectAction.getY()));
+                    break;
                 case "Check":
                     Check checkAction = (Check)cur;
                     c.prompt(checkAction.who());
+                    break;
                 case "Pass":
                     c.prompt("Passed.");
                     break;
