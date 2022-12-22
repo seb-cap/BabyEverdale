@@ -16,7 +16,7 @@ public class EverdaleConsole implements Client {
     }
 
     private static void addAction(Queue<Action> acs, Scanner console) {
-        promptS("What's Next? (View, Build, Command, Pass)");
+        promptS("What's Next? (View, Build, Command, Pass, Inspect, Check)");
         String next = console.nextLine().toLowerCase();
         switch (next) {
             case "build":
@@ -46,14 +46,22 @@ public class EverdaleConsole implements Client {
                 acs.add(new View());
                 break;
             case "pass":
-                acs.add(new Pass());
+                promptS("How many times?");
+                try {
+                    int times = Integer.parseInt(console.nextLine());
+                    for (int i = 0; i < times; i++) {
+                        acs.add(new Pass());
+                    }
+                } catch (Exception e) {
+                    promptS("Invalid Number.");
+                }
                 break;
             case "command":
                 promptS("Who?");
                 for (Resident r : Game.home.getResidents()) {
                     promptS(r.getName());
                 }
-                Resident who = getResident(console.nextLine());
+                Resident who = Game.home.getResident(console.nextLine());
                 if (who == null) {
                     promptS("Invalid name.");
                     break;
@@ -72,8 +80,32 @@ public class EverdaleConsole implements Client {
                     break;
                 }
                 Coordinate where = Game.home.getCoord(x, y);
-                who.goTo(where);
                 promptS("Sending " + who.getName() + " to " + where + " (" + Game.home.buildingAt(where) + ")");
+                acs.add(new Command(who, where));
+                break;
+            case "inspect":
+                try {
+                    promptS("Select X");
+                    x = Integer.parseInt(console.nextLine());
+                    promptS("Select Y");
+                    y = Integer.parseInt(console.nextLine());
+
+                    acs.add(new Inspect(x, y));
+                } catch (Exception e) {
+                    promptS("Invalid Number.");
+                }
+                break;
+            case "check":
+                promptS("Who?");
+                for (Resident r : Game.home.getResidents()) {
+                    promptS(r.getName());
+                }
+                who = Game.home.getResident(console.nextLine());
+                if (who == null) {
+                    promptS("Invalid name.");
+                    break;
+                }
+                acs.add(new Check(who));
                 break;
             default:
                 promptS("Failed to add: " + next);
@@ -94,12 +126,5 @@ public class EverdaleConsole implements Client {
                 ex.printStackTrace();
             }
         }
-    }
-
-    private static Resident getResident(String name) {
-        for (Resident r : Game.home.getResidents()) {
-            if (r.getName().equalsIgnoreCase(name)) return r;
-        }
-        return null;
     }
 }

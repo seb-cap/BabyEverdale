@@ -4,52 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Everdale.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/EverdaleConsole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Action.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Build.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/BuildCart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Building.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Cart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/ClayPit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Consumable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Coordinate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Empty.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/EventCart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Everglade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Food.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Gate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Home.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Kitchen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/OttoCart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Pass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Patch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Producer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Research.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Resident.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Resource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/ShipCart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/SmallClay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/SmallStone.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/SmallTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/StonePit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Storage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Study.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/View.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Village.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/Warehouse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/everdale/WoodStorage.java" afterDir="false" />
+    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Basic Text-Based Functions.">
+      <change afterPath="$PROJECT_DIR$/everdale/Check.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/everdale/ClayStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/everdale/Inspect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/everdale/StoneStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/EverdaleConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/EverdaleConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Building.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/ClayPit.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/ClayPit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Consumable.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Consumable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Coordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Coordinate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Everglade.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Everglade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Kitchen.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Kitchen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Patch.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Patch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Producer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Resident.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Resident.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/StonePit.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/StonePit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Storage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Village.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Village.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/WoodStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/WoodStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/client/EverdaleConsole.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/client/EverdaleConsole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Building.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Building.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/ClayPit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/ClayPit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Command.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Command.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Consumable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Consumable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Coordinate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Coordinate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Everglade.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Everglade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Food.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Food.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Kitchen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Kitchen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Patch.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Patch.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Producer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Producer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Resource.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Resource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/StonePit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/StonePit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Storage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Storage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Village.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Village.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/WoodStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/WoodStorage.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +87,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -141,16 +139,46 @@
       <updated>1671571584851</updated>
       <workItem from="1671571586022" duration="2301000" />
       <workItem from="1671576040340" duration="6125000" />
-      <workItem from="1671587390870" duration="5389000" />
+      <workItem from="1671587390870" duration="7276000" />
+      <workItem from="1671597405142" duration="2217000" />
+      <workItem from="1671655932650" duration="14976000" />
     </task>
+    <task id="LOCAL-00001" summary="Basic Text-Based Functions.">
+      <created>1671593317964</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1671593317964</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Basic Text-Based Functions.">
+      <created>1671593642186</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671593642186</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Basic Text-Based Functions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic Text-Based Functions." />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Everdale$EverdaleConsole.ic" NAME="EverdaleConsole Coverage Results" MODIFIED="1671582891587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>client.*</FILTER>
-    </SUITE>
+    <SUITE FILE_PATH="coverage/Everdale$EverdaleConsole.ic" NAME="EverdaleConsole Coverage Results" MODIFIED="1671675493020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

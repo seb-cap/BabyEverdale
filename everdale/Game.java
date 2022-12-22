@@ -15,11 +15,6 @@ public class Game {
     public static void play(Queue<Action> actions) throws InterruptedException {
 
         while (!actions.isEmpty()) {
-            c.prompt(tick);
-            for (Resident r : home.getResidents()) {
-                r.walk();
-                c.prompt(r.getName() + " is at " + r.getLocation() + " (" + home.buildingAt(r.getLocation()) + ").");
-            }
             Action cur = actions.peek();
             switch (actions.remove().getClass().toString().substring(15)) {
                 case "Build":
@@ -29,11 +24,27 @@ public class Game {
                 case "View":
                     c.prompt(home.toString());
                     break;
+                case "Command":
+                    Command commandAction = (Command)cur;
+                    commandAction.who().goTo(commandAction.where());
+                    break;
+                case "Inspect":
+                    Inspect inspectAction = (Inspect)cur;
+                    c.prompt(home.buildingAt(inspectAction.getX(), inspectAction.getY()));
+                case "Check":
+                    Check checkAction = (Check)cur;
+                    c.prompt(checkAction.who());
                 case "Pass":
                     c.prompt("Passed.");
+                    break;
                 default:
                     c.prompt("Invalid");
                     break;
+            }
+            c.prompt(tick);
+            for (Resident r : home.getResidents()) {
+                r.walk();
+                c.prompt(r.getName() + " is at " + r.getLocation() + " (" + home.buildingAt(r.getLocation()) + ").");
             }
             tick++;
         }

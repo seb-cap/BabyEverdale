@@ -8,4 +8,12 @@ public class Command implements Action {
         this.who = who;
         this.where = where;
     }
+
+    public Resident who() {
+        return this.who;
+    }
+
+    public Coordinate where() {
+        return this.where;
+    }
 }

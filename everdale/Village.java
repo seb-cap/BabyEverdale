@@ -10,7 +10,10 @@ public class Village {
     private Set<Coordinate> coords = new HashSet<>();
 
     private Map<Coordinate, Building> layout;
-    private Map<Resource, Integer> inventory;
+    private Map<Building, Coordinate> buildings;
+
+    private Map<Resource, int[]> inventory;
+    private List<Storage> storages;
 
     private Set<Resident> residents;
 
@@ -40,9 +43,11 @@ public class Village {
         this.build(this.getCoord(X_SIZE - X_SIZE / 10 - 1, Y_SIZE / 10), new StonePit());
         this.build(this.getCoord(X_SIZE / 10, Y_SIZE - Y_SIZE / 10 - 1), new StonePit());
 
+        // First Home
         Coordinate houseCoord = this.getCoord(X_SIZE / 2, Y_SIZE / 2 + Y_SIZE / 10);
         this.build(houseCoord, new Home());
         Resident r = ((Home)this.buildingAt(houseCoord)).getResident();
+        r.setResidency(this);
         r.goTo(houseCoord);
         this.residents.add(r);
 
@@ -50,9 +55,13 @@ public class Village {
 
         this.build(this.getCoord(X_SIZE / 2 + X_SIZE / 10, Y_SIZE / 2), new Study());
 
-        this.build(this.getCoord(X_SIZE / 2 - X_SIZE / 10, Y_SIZE / 2), new WoodStorage());
+        // Storages
+        this.storages = new ArrayList<>();
+        WoodStorage first = new WoodStorage();
+        this.build(this.getCoord(X_SIZE / 2 - X_SIZE / 10, Y_SIZE / 2), first);
+        this.storages.add(first);
 
-        this.build(this.getCoord(X_SIZE - 2, Y_SIZE / 2), new Gate());
+        this.build(this.getCoord(X_SIZE - X_SIZE / 20, Y_SIZE / 2), new Gate());
 
         this.build(this.getCoord(X_SIZE / 20 * 17, Y_SIZE / 2 + Y_SIZE / 10), new OttoCart());
         this.build(this.getCoord(X_SIZE / 20 * 16, Y_SIZE / 2 - Y_SIZE / 10), new ShipCart());
@@ -68,6 +77,7 @@ public class Village {
         }
 
         this.initializeInventory();
+        this.initializeBuildingsMap();
     }
 
     /**
@@ -76,8 +86,39 @@ public class Village {
     private void initializeInventory() {
         this.inventory = new HashMap<>();
         for (Resource r : Resource.values()) {
-            this.inventory.put(r, 0);
+            this.inventory.put(r, new int[]{0, 0});
         }
+        this.updateInventoryMaxes();
+    }
+
+    public void updateInventoryMaxes() {
+        Map<Resource, Integer> maxes = new HashMap<>();
+        for (Storage s : this.storages) {
+            if (!maxes.containsKey(s.getResource())) {
+                maxes.put(s.getResource(), 0);
+            }
+            maxes.put(s.getResource(), maxes.get(s.getResource()) + s.getCapacity());
+        }
+        for (Resource r : maxes.keySet()) {
+            this.inventory.get(r)[1] = maxes.get(r);
+        }
+    }
+
+    public void updateBuildingsMap() {
+        for (Coordinate c : this.layout.keySet()) {
+            if(!(this.buildingAt(c) instanceof Empty)) {
+                this.buildings.put(this.buildingAt(c), c);
+            }
+        }
+    }
+
+    private void initializeBuildingsMap() {
+        this.buildings = new HashMap<>();
+        this.updateBuildingsMap();
+    }
+
+    public Map<Building, Coordinate> buildings() {
+        return this.buildings;
     }
 
     /**
@@ -99,15 +140,12 @@ public class Village {
             }
             return true;
         }
-        else {
-            Game.c.prompt("Invalid.");
-            return false;
-        }
+        return false;
     }
 
     private boolean allEmpty(Coordinate c, int Xsize, int Ysize) {
-        for (int x = c.getX(); x < c.getX() + Xsize - 1; x++) {
-            for (int y = c.getY(); y < c.getY() + Ysize - 1; y++) {
+        for (int x = c.getX(); x < c.getX() + Xsize; x++) {
+            for (int y = c.getY(); y < c.getY() + Ysize; y++) {
                 if (!this.buildingAt(x, y).isEmpty()) {
                     return false;
                 }
@@ -151,6 +189,20 @@ public class Village {
         return new TreeSet<>(this.residents);
     }
 
+    public Coordinate findExactBuilding(Building b) {
+        for (Coordinate c : this.layout.keySet()) {
+            if (this.layout.get(c) == b) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public void destroy(Coordinate c) {
+        c = this.getCoord(c.getX(), c.getY());
+        if (!this.layout.get(c).isEmpty()) this.layout.put(c, new Empty());
+    }
+
     @Override
     public String toString() {
         // size of each entry in characters
@@ -191,5 +243,16 @@ public class Village {
             }
         }
         return ret;
+    }
+
+    public boolean allStoragesFull(Resource res) {
+        return this.inventory.get(res)[0] >= this.inventory.get(res)[1];
+    }
+
+    public static Resident getResident(String name) {
+        for (Resident r : Game.home.getResidents()) {
+            if (r.getName().equalsIgnoreCase(name)) return r;
+        }
+        return null;
     }
 }

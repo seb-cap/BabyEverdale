@@ -24,6 +24,10 @@ public class Coordinate implements Comparable<Coordinate> {
         this(0, 0);
     }
 
+    public Coordinate(Coordinate other) {
+        this(other.x, other.y);
+    }
+
     public int getX() {
         return this.x;
     }

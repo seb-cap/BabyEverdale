@@ -1,11 +1,11 @@
 package everdale;
 
 
-public class Storage extends Building {
+public abstract class Storage extends Building {
 
-    private Resource type;
-    private int capacity;
-    private int contains;
+    protected Resource type;
+    protected int capacity;
+    protected int contains;
 
     /**
      * Creates a new Storage of size 2x2 for the given Resource
@@ -31,6 +31,15 @@ public class Storage extends Building {
     public int getCurrent() {
         return this.contains;
     }
+
+    public Resource getResource() {
+        return this.type;
+    }
+
+    public boolean isFull() {
+        return this.capacity - this.contains <= 0;
+    }
+    public abstract void levelUp();
 
     /**
      * Adds or subtracts Resources from a Storage
@@ -60,6 +69,10 @@ public class Storage extends Building {
         }
         return ret;
 
+    }
+
+    public String toString() {
+        return this.getResource() + " Storage: " + this.contains + "/" + this.capacity;
     }
 
 }

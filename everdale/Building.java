@@ -1,7 +1,7 @@
 package everdale;
 
 public abstract class Building {
-    private int level;
+    protected int level;
     private int sizeX;
     private int sizeY;
 

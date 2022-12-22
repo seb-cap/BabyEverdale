@@ -2,7 +2,7 @@ package everdale;
 
 import java.util.*;
 
-public class Kitchen extends Building {
+public class Kitchen extends Building { //TODO make this extend Storage
     private Map<Food, Integer> inventory;
 
     public Kitchen() {
@@ -12,7 +12,6 @@ public class Kitchen extends Building {
 
     private void initializeInventory() {
         this.inventory = new HashMap<>();
-        this.inventory.put(Food.Soup, 0);
     }
 }
 
