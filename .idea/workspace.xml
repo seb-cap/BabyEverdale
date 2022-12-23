@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Renamed Everglade to Evergrove. Fixed Inspect bug.">
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/Background.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/Graphical2dClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/SpriteSheet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/Villager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/characters.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/EverdaleConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/console/EverdaleConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Resident.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Resident.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/client/EverdaleConsole.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Game.class" afterDir="false" />
+    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Basic 2D UI started. Basic character working.">
+      <change beforePath="$PROJECT_DIR$/client/graphical2d/SpriteSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/SpriteSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +40,6 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "openjdk-19",
     "last_opened_file_path": "C:/Users/sebas/Downloads/characters.png",
@@ -111,7 +100,7 @@
       <workItem from="1671587390870" duration="7276000" />
       <workItem from="1671597405142" duration="2217000" />
       <workItem from="1671655932650" duration="15497000" />
-      <workItem from="1671757412680" duration="13456000" />
+      <workItem from="1671757412680" duration="13637000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Text-Based Functions.">
       <created>1671593317964</created>
@@ -141,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671683764783</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Basic 2D UI started. Basic character working.">
+      <created>1671771261407</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671771261407</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,7 +158,8 @@
     <MESSAGE value="Basic Text-Based Functions." />
     <MESSAGE value="Everglade Works!" />
     <MESSAGE value="Renamed Everglade to Evergrove. Fixed Inspect bug." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed Everglade to Evergrove. Fixed Inspect bug." />
+    <MESSAGE value="Basic 2D UI started. Basic character working." />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic 2D UI started. Basic character working." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Everdale$EverdaleConsole.ic" NAME="EverdaleConsole Coverage Results" MODIFIED="1671675493020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

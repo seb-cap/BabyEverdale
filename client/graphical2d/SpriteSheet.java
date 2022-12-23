@@ -44,7 +44,7 @@ public class SpriteSheet {
             for (int y = 0; y < image.getHeight(); y++) {
                 int cur = image.getRGB(x, y);
                 if (cur == c.getRGB()) {
-                    transparent.setRGB(x, y, new Color(0, 0 ,0, 0).getRGB());
+                    transparent.setRGB(x, y, new Color(0, 0,0, 0).getRGB());
                 }
                 else {
                     transparent.setRGB(x, y, cur);
