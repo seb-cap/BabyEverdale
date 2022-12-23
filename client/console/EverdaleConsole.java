@@ -1,4 +1,4 @@
-package client;
+package client.console;
 
 import everdale.*;
 
@@ -120,11 +120,7 @@ public class EverdaleConsole implements Client {
         Scanner console = new Scanner(System.in);
         while (true) {
             addAction(actions, console);
-            try {
-                Game.play(actions);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
+            Game.play(actions);
         }
     }
 }

@@ -45,6 +45,14 @@ public class Resident implements Comparable<Resident> {
         goTo(c);
     }
 
+    public Status getStatus() {
+        return this.status;
+    }
+
+    public boolean isIdle() {
+        return this.status == Status.idle;
+    }
+
     public void walk() {
         boolean walking = false;
         if (location.getX() > destination.getX()) {
@@ -72,9 +80,8 @@ public class Resident implements Comparable<Resident> {
         Building at = residency.buildingAt(this.location);
         if (at instanceof Producer) {
             ((Producer)at).generate(this);
-            return;
         }
-        if (at instanceof Storage) {
+        else if (at instanceof Storage) {
             if (this.holding == null) return;
             Storage here = (Storage)at;
             if (this.holding.equals(here.getResource())) {
@@ -85,7 +92,10 @@ public class Resident implements Comparable<Resident> {
             System.out.println(returnDestination);
             if (returnDestination != null) this.goTo(returnDestination);
         }
-        if (at instanceof Home) {
+        else if (at instanceof Home) {
+            this.status = Status.idle;
+        }
+        else {
             this.status = Status.idle;
         }
     }

@@ -12,7 +12,7 @@ public class Game {
         Game.c = c;
     }
 
-    public static void play(Queue<Action> actions) throws InterruptedException {
+    public static void play(Queue<Action> actions) {
 
         while (!actions.isEmpty()) {
             Action cur = actions.peek();
