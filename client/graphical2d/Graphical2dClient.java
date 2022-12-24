@@ -17,9 +17,11 @@ public class Graphical2dClient extends JFrame implements Client {
 
     private void initUI() {
 
-        this.add(new Background());
+        Background background = new Background();
 
-        this.setSize(1050, 1050);
+        this.setPreferredSize(new Dimension(1050, 1050));
+        this.setContentPane(background);
+        pack();
 
         this.setTitle("Everdale");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

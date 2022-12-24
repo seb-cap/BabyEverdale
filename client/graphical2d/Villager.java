@@ -2,10 +2,10 @@ package client.graphical2d;
 
 import everdale.*;
 
-import java.awt.*;
+
+import java.awt.image.BufferedImage;
 
 public class Villager {
-
 
     private final int ANIMATION_QUANTITY = 3;
 
@@ -16,7 +16,7 @@ public class Villager {
     private final int startX = 256;
     private final int startY = 306;
 
-    private Image[] images;
+    private final BufferedImage[] images;
 
     private int x;
     private int y;
@@ -27,8 +27,8 @@ public class Villager {
 
     public Villager(Resident r) {
         this.representing = r;
-        this.x = r.getLocation().getX() * 10;
-        this.y = r.getLocation().getY() * 10;
+        this.x = r.getLocation().getX();
+        this.y = r.getLocation().getY();
         this.images = SpriteSheet.getSprites(
                 SpriteSheet.VILLAGER_SPRITE_SHEET, startX, startY, rows, cols, width, height);
         this.animationState = 0;
@@ -60,8 +60,8 @@ public class Villager {
         int oldX = this.x;
         int oldY = this.y;
         int oldDirection = this.direction;
-        this.x = representing.getLocation().getX() * 10;
-        this.y = representing.getLocation().getY() * 10;
+        this.x = representing.getLocation().getX();
+        this.y = representing.getLocation().getY();
         this.direction = getDirection(this.x, this.y, oldX, oldY);
 
         if (!this.representing.isIdle()) {
@@ -113,7 +113,7 @@ public class Villager {
         return alternateDirection;
     }
 
-    public Image getImage() {
+    public BufferedImage getImage() {
         return this.images[this.animationState];
     }
 

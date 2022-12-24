@@ -13,11 +13,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
 
 
 public class Background extends JPanel implements MouseListener, ActionListener {
@@ -26,6 +27,8 @@ public class Background extends JPanel implements MouseListener, ActionListener 
     private List<Villager> villagers;
     private Set<Building> buildings;
     private Villager selectedVillager = null;
+    private int currentViewX;
+    private int currentViewY;
 
 
     public Background() {
@@ -34,13 +37,19 @@ public class Background extends JPanel implements MouseListener, ActionListener 
 
     private void initBackground() {
         this.addMouseListener(this);
-        this.setBackground(Color.green);
+        this.setBackground(Color.darkGray);
         this.setFocusable(true);
+        this.setSize(1050, 1050);
+
+        this.currentViewX = 0;
+        this.currentViewY = 0;
 
         this.buildings = Game.home.buildings().keySet();
 
         this.villagers = new ArrayList<>();
         this.villagers.add(new Villager(Game.home.getResidents().iterator().next()));
+
+        this.addKeyListener(new Keys(this));
 
         final int DELAY = 100;
         Timer timer = new Timer(DELAY, this);
@@ -58,6 +67,10 @@ public class Background extends JPanel implements MouseListener, ActionListener 
 
     private void doDrawing(Graphics2D g) {
         for (Building b : buildings) {
+            // If out of view, don't draw
+            if (b.getX() < currentViewX / 10 || b.getX() > currentViewX / 10 + this.getWidth() / 10 ||
+                b.getY() < currentViewY / 10 || b.getY() > currentViewY / 10 + this.getHeight()) continue;
+
             if (b instanceof Empty) continue;
 
             if (b instanceof SmallTree) {
@@ -86,14 +99,18 @@ public class Background extends JPanel implements MouseListener, ActionListener 
             }
         }
         for (Villager v : villagers) {
-            g.drawImage(v.getImage(), v.getX(), v.getY(), this);
+            drawImage(g, v.getImage(), v.getX(), v.getY(), 1, 1);
         }
     }
 
     private void drawImage(Graphics2D g, BufferedImage i, Building b) {
-        for (int y = 0; y < b.getSizeY() * 10; y+= 10){
-            for(int x=0;x<b.getSizeX()*10;x+=10){
-                g.drawImage(i, b.getX() * 10 + x, b.getY() * 10 + y, this);
+        drawImage(g, i, b.getX(), b.getY(), b.getSizeX(), b.getSizeY());
+    }
+
+    private void drawImage(Graphics2D g, BufferedImage i, int locX, int locY, int sizeX, int sizeY) {
+        for (int y = 0; y < sizeY * 10; y+= 10) {
+            for(int x = 0; x < sizeX * 10; x+=10) {
+                g.drawImage(i, locX * 10 + x - this.currentViewX, locY * 10 + y - this.currentViewY, this);
             }
         }
     }
@@ -106,6 +123,10 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         return c.progressIsEmpty() ? 0 : 1;
     }
 
+    private boolean clicked(int clickedX, int clickedY, int absoluteX, int absoluteY) {
+        return absoluteX - this.currentViewX / 10 == clickedX && absoluteY - this.currentViewY / 10 == clickedY;
+
+    }
 
     // Mouse Listener Methods
     @Override
@@ -117,13 +138,19 @@ public class Background extends JPanel implements MouseListener, ActionListener 
     public void mousePressed(MouseEvent e) {
         int x = e.getX() / 10;
         int y = e.getY() / 10;
-        System.out.println(x + ", " + y);
-        if (this.selectedVillager != null) Graphical2dClient.actions.add(new Command(this.selectedVillager.asResident(), new Coordinate(x, y)));
+        if (x + currentViewX / 10 > Village.X_SIZE - 1 || y + currentViewY / 10 > Village.Y_SIZE - 1) return;
+        if (this.selectedVillager != null) {
+            Graphical2dClient.actions.add(
+                    new Command(this.selectedVillager.asResident(),
+                            new Coordinate(x + currentViewX / 10, y + currentViewY / 10)
+                    )
+            );
+        }
 
         for (Villager v : this.villagers) {
             this.selectedVillager = null;
             v.deselect();
-            if (v.getX() / 10 == x && v.getY() / 10 == y) {
+            if (clicked(x, y, v.getX(), v.getY())) {
                 this.selectedVillager = v;
                 v.select();
             }
@@ -151,8 +178,43 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         for (Villager v : villagers) {
             v.updateLocation();
         }
+
         Graphical2dClient.actions.add(Action.PASS);
         Game.play(Graphical2dClient.actions);
         repaint();
+    }
+
+    public void moveRight() {
+        if (this.currentViewX / 10 < Village.X_SIZE - 1) this.currentViewX += 10;
+    }
+
+    public void moveLeft() {
+        if (this.currentViewX > 0) this.currentViewX -= 10;
+    }
+
+    public void moveDown() {
+        if (this.currentViewY / 10 < Village.Y_SIZE - 1) this.currentViewY += 10;
+    }
+
+    public void moveUp() {
+        if (this.currentViewY > 0) this.currentViewY -= 10;
+    }
+
+
+    private static class Keys extends KeyAdapter {
+
+        private final Background b;
+
+        public Keys(Background b) {
+            this.b = b;
+        }
+        public void keyPressed(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_RIGHT -> b.moveRight();
+                case KeyEvent.VK_LEFT -> b.moveLeft();
+                case KeyEvent.VK_DOWN -> b.moveDown();
+                case KeyEvent.VK_UP -> b.moveUp();
+            }
+        }
     }
 }
