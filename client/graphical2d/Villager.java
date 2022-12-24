@@ -2,7 +2,6 @@ package client.graphical2d;
 
 import everdale.*;
 
-
 import java.awt.image.BufferedImage;
 
 public class Villager {
@@ -64,7 +63,7 @@ public class Villager {
         this.y = representing.getLocation().getY();
         this.direction = getDirection(this.x, this.y, oldX, oldY);
 
-        if (!this.representing.isIdle()) {
+        if (this.representing.isWorking()) {
             animationState++;
             if (animationState % (ANIMATION_QUANTITY) == 0 || this.direction != oldDirection) {
                 animationState = 3 * direction;

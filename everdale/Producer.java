@@ -19,16 +19,17 @@ public abstract class Producer extends Building {
         this(size, size, generationTime, res, c);
     }
 
-    public void generate(Resident rFor) {
+    public boolean generate(Resident rFor) {
         if (rFor.getResidency().allStoragesFull(this.res)) {
             rFor.setStatus(Resident.Status.waiting);
-            return;
+            return false;
         }
         this.generation++;
         if (this.generation >= this.generationTime) {
             rFor.store(this.res);
             if (!(this instanceof Consumable)) this.generation = 0;
         }
+        return true;
     }
 }
 

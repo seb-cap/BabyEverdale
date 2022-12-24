@@ -103,6 +103,14 @@ public class Village {
         }
     }
 
+    public void increaseInventory(Resource res, int amount) {
+        this.inventory.get(res)[0] += amount;
+    }
+
+    public void increaseInventory(Resource res) {
+        increaseInventory(res, 1);
+    }
+
     public void updateBuildingsMap() {
         for (Coordinate c : this.layout.keySet()) {
             if(!(this.buildingAt(c) instanceof Empty)) {

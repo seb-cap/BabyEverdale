@@ -4,68 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Typo Fix.">
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/evergrove.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/small_clay.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/small_stone.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/small_tree.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/wood_storage.png" afterDir="false" />
+    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Level 1 Wood Storage working basically. Evergrove and SmallTree works.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/graphical2d/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Background.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/graphical2d/Graphical2dClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Graphical2dClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/graphical2d/SpriteSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/SpriteSheet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/graphical2d/Villager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Villager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/BuildCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/BuildCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Building.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/ClayPit.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/ClayPit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/ClayStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/ClayStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Consumable.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Consumable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Empty.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Empty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/EventCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/EventCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Evergrove.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Evergrove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Gate.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Gate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Kitchen.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Kitchen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/OttoCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/OttoCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Patch.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Patch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Producer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/ShipCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/ShipCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/SmallClay.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/SmallClay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/SmallStone.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/SmallStone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/SmallTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/SmallTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/StonePit.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/StonePit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/StoneStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/StoneStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Storage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Study.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Study.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Village.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Village.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Warehouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/WoodStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/WoodStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/BuildCart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/BuildCart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Building.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Building.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Cart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/ClayPit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/ClayPit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Consumable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Consumable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Empty.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Empty.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/EventCart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/EventCart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Gate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Gate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Home.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Home.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Kitchen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Kitchen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/OttoCart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/OttoCart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Patch.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Patch.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Producer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Producer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/ShipCart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/ShipCart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/SmallClay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/SmallClay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/SmallStone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/SmallStone.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/SmallTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/SmallTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/StonePit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/StonePit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Storage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Storage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Study.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Study.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Village.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Village.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Warehouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Warehouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/WoodStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/WoodStorage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/graphical2d/images/small_tree.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/images/small_tree.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +61,9 @@
       <recent name="client" />
       <recent name="everdale" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sebas\OneDrive\Everdale\client\graphical2d\images" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Everdale2dClient">
     <configuration name="Everdale2dClient" type="Application" factoryName="Application">
@@ -163,7 +111,8 @@
       <workItem from="1671757412680" duration="13884000" />
       <workItem from="1671785666957" duration="3535000" />
       <workItem from="1671825489561" duration="4375000" />
-      <workItem from="1671831837390" duration="484000" />
+      <workItem from="1671831837390" duration="7278000" />
+      <workItem from="1671846646496" duration="5266000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Text-Based Functions.">
       <created>1671593317964</created>
@@ -207,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671771407931</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Level 1 Wood Storage working basically. Evergrove and SmallTree works.">
+      <created>1671845352002</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1671845352002</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,7 +187,8 @@
     <MESSAGE value="Renamed Everglade to Evergrove. Fixed Inspect bug." />
     <MESSAGE value="Basic 2D UI started. Basic character working." />
     <MESSAGE value="Typo Fix." />
-    <option name="LAST_COMMIT_MESSAGE" value="Typo Fix." />
+    <MESSAGE value="Level 1 Wood Storage working basically. Evergrove and SmallTree works." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level 1 Wood Storage working basically. Evergrove and SmallTree works." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Everdale$EverdaleConsole.ic" NAME="EverdaleConsole Coverage Results" MODIFIED="1671675493020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -1,8 +1,10 @@
 package client.graphical2d;
 
 import everdale.*;
-import java.awt.*;
-import javax.swing.*;
+
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import javax.swing.JFrame;
 import java.util.LinkedList;
 import java.util.Queue;
 

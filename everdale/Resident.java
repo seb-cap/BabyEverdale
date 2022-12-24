@@ -51,8 +51,8 @@ public class Resident implements Comparable<Resident> {
         return this.status;
     }
 
-    public boolean isIdle() {
-        return this.status == Status.idle;
+    public boolean isWorking() {
+        return this.status == Status.working;
     }
 
     public void walk() {
@@ -103,6 +103,7 @@ public class Resident implements Comparable<Resident> {
             if (this.holding.equals(here.getResource())) {
                 if (here.add(1) == 0) {
                     this.holding = null;
+                    this.residency.increaseInventory(here.getResource());
                 }
             }
             if (returnDestination != null) this.goTo(returnDestination);

@@ -13,15 +13,18 @@ public abstract class Consumable extends Producer {
         from.destroy(this.getCoord());
     }
 
-    public void generate(Resident rFor) {
-        super.generate(rFor);
-        if (this.generation >= this.generationTime) {
-            this.hp--;
-            this.generation = 0;
+    public boolean generate(Resident rFor) {
+        if (super.generate(rFor)) {
+            if (this.generation >= this.generationTime) {
+                this.hp--;
+                this.generation = 0;
+            }
+            if (this.hp <= 0) {
+                this.destroy(rFor.getResidency());
+            }
+            return true;
         }
-        if (this.hp <= 0) {
-            this.destroy(rFor.getResidency());
-        }
+        return false;
     }
 }
 
