@@ -2,11 +2,7 @@ package client.graphical2d;
 
 import everdale.*;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class Villager {
 
@@ -34,9 +30,9 @@ public class Villager {
         this.x = r.getLocation().getX() * 10;
         this.y = r.getLocation().getY() * 10;
         this.images = SpriteSheet.getSprites(
-                "client/graphical2d/characters.png", startX, startY, rows, cols, width, height);
+                SpriteSheet.VILLAGER_SPRITE_SHEET, startX, startY, rows, cols, width, height);
         this.animationState = 0;
-        this.direction = SpriteSheet.LEFT;
+        this.direction = SpriteSheet.RIGHT;
         this.diagonalCounter = 0;
     }
 
@@ -49,7 +45,15 @@ public class Villager {
     }
 
     public void select() {
+        this.representing.halt();
+    }
 
+    public void deselect() {
+        this.representing.unhalt();
+    }
+
+    public Resident asResident() {
+        return this.representing;
     }
 
     public void updateLocation() {

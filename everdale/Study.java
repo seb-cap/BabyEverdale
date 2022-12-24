@@ -13,8 +13,8 @@ public class Study extends Building {
 
     public static List<Research> viewableSearched = Collections.unmodifiableList(searched);
 
-    public Study() {
-        super(3);
+    public Study(Coordinate c) {
+        super(3, c);
     }
 
     public void research() {

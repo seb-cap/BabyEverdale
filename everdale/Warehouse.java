@@ -2,11 +2,11 @@ package everdale;
 
 import java.util.*;
 
-public class Warehouse extends Building {
+public class Warehouse extends Building { // TODO Make another class? interface? for this and kitchen
     Map<Product, Integer> inventory;
 
-    public Warehouse() {
-        super(3);
+    public Warehouse(Coordinate c) {
+        super(3, c);
         this.initializeInventory();
     }
 

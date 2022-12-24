@@ -7,8 +7,8 @@ public class Cart extends Building {
     private int needed;
     private int fulfilled;
 
-    public Cart() {
-        super(2);
+    public Cart(Coordinate c) {
+        super(2, c);
     }
 
     /**
@@ -32,5 +32,8 @@ public class Cart extends Building {
         return Math.min(0, this.fulfilled - this.needed);
     }
 
+    public boolean progressIsEmpty() {
+        return this.fulfilled == 0;
+    }
 }
 

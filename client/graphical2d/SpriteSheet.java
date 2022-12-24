@@ -9,11 +9,29 @@ import java.io.IOException;
 
 public class SpriteSheet {
 
+    public static final String VILLAGER_SPRITE_SHEET = "client/graphical2d/images/characters.png";
+    public static final BufferedImage SMALL_TREE_SPRITE = getSprite("client/graphical2d/images/small_tree.png");
+    public static final BufferedImage EVERGROVE_SPRITE = getSprite("client/graphical2d/images/evergrove.png");
+    public static final BufferedImage[] WOOD_STORAGE_SPRITES = getSprites("client/graphical2d/images/wood_storage.png", 12, 3);
+    public static final BufferedImage SMALL_STONE_SPRITE = getSprite("client/graphical2d/images/small_stone.png");
+    public static final BufferedImage SMALL_CLAY_SPRITE = getSprite("client/graphical2d/images/small_clay.png");
+    public static final BufferedImage[] BUILD_CART_SPRITES = getSprites("client/graphical2d/images/build_cart.png", 1, 2);
+
+
     public static int UP = 0;
     public static int RIGHT = 1;
     public static int DOWN = 2;
     public static int LEFT = 3;
 
+
+    public static BufferedImage getSprite(String fileName) {
+        try {
+            return ImageIO.read(new File(fileName));
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static BufferedImage[] getSprites(String fileName, int startX, int startY, int rows, int cols, int width, int height) {
         try {
@@ -32,10 +50,13 @@ public class SpriteSheet {
             }
             return images;
 
-        } catch (
-                IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static BufferedImage[] getSprites(String fileName, int rows, int cols) {
+        return getSprites(fileName, 0, 0, rows, cols, 10, 10);
     }
 
     private static BufferedImage removeBackground(BufferedImage image, Color c) {

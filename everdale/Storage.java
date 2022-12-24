@@ -11,8 +11,8 @@ public abstract class Storage extends Building {
      * Creates a new Storage of size 2x2 for the given Resource
      * @param type the Resource for the Storage
      */
-    public Storage(Resource type) {
-        super(2);
+    public Storage(Resource type, Coordinate c) {
+        super(2, c);
         this.type = type;
     }
 
@@ -38,6 +38,9 @@ public abstract class Storage extends Building {
 
     public boolean isFull() {
         return this.capacity - this.contains <= 0;
+    }
+    public boolean storageIsEmpty() {
+        return this.contains == 0;
     }
     public abstract void levelUp();
 

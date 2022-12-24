@@ -19,7 +19,7 @@ public class Graphical2dClient extends JFrame implements Client {
 
         this.add(new Background());
 
-        this.setSize(1000, 1000);
+        this.setSize(1050, 1050);
 
         this.setTitle("Everdale");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,7 +29,7 @@ public class Graphical2dClient extends JFrame implements Client {
 
 
     public void prompt(Object o) {
-        System.out.println(o); // TODO
+        //System.out.println(o); // TODO
     }
 
 
@@ -39,11 +39,6 @@ public class Graphical2dClient extends JFrame implements Client {
         EventQueue.invokeLater(() -> {
             Graphical2dClient ex = new Graphical2dClient();
             Game.setClient(ex);
-
-            actions.add(new Command(Game.home.getResidents().iterator().next(), Game.home.getCoord(10, 30))); //TODO
-
-            Game.play(actions);
-
             ex.setVisible(true);
         });
     }

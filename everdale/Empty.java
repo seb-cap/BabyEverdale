@@ -3,8 +3,8 @@ package everdale;
 
 public class Empty extends Building {
 
-    public Empty() {
-        super(1);
+    public Empty(Coordinate c) {
+        super(1, c);
     }
 
     public String toString() {

@@ -6,8 +6,8 @@ public class Gate extends Building {
 
     private Color color;
 
-    public Gate() {
-        super(3, 5);
+    public Gate(Coordinate c) {
+        super(3, 5, c);
         color = Color.yellow;
     }
 

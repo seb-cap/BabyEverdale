@@ -4,8 +4,9 @@ public abstract class Building {
     protected int level;
     private int sizeX;
     private int sizeY;
+    private Coordinate coord;
 
-    public Building(int sizeX, int sizeY) {
+    public Building(int sizeX, int sizeY, Coordinate c) {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         if (this instanceof Producer) {
@@ -14,10 +15,11 @@ public abstract class Building {
         else {
             this.level = 1;
         }
+        this.coord = c;
     }
 
-    public Building(int size) {
-        this(size, size);
+    public Building(int size, Coordinate c) {
+        this(size, size, c);
     }
 
     public int getLevel() {
@@ -55,6 +57,18 @@ public abstract class Building {
     public void setSize(int size) {
         this.sizeX = size;
         this.sizeY = size;
+    }
+
+    public Coordinate getCoord() {
+        return this.coord;
+    }
+
+    public int getX() {
+        return this.coord.getX();
+    }
+
+    public int getY() {
+        return this.coord.getY();
     }
 
     public boolean isEmpty() {

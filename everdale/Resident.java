@@ -20,6 +20,7 @@ public class Resident implements Comparable<Resident> {
     private Village residency;
     private Item holding;
     private Status status;
+    private boolean halted;
 
     public void setStatus(Status status) {
         this.status = status;
@@ -34,6 +35,7 @@ public class Resident implements Comparable<Resident> {
         this.location = new Coordinate(0, 0);
         this.home = house;
         this.status = Status.idle;
+        this.halted = false;
     }
 
     public void goTo(Coordinate c) {
@@ -54,6 +56,8 @@ public class Resident implements Comparable<Resident> {
     }
 
     public void walk() {
+        if (halted) return;
+
         boolean walking = false;
         if (location.getX() > destination.getX()) {
             this.location.translate(-1, 0);
@@ -76,6 +80,18 @@ public class Resident implements Comparable<Resident> {
 
     }
 
+    public void halt() {
+        this.halted = true;
+    }
+
+    public void unhalt() {
+        this.halted = false;
+    }
+
+    public boolean isHalted() {
+        return this.halted;
+    }
+
     public void work() {
         Building at = residency.buildingAt(this.location);
         if (at instanceof Producer) {
@@ -89,7 +105,6 @@ public class Resident implements Comparable<Resident> {
                     this.holding = null;
                 }
             }
-            System.out.println(returnDestination);
             if (returnDestination != null) this.goTo(returnDestination);
         }
         else if (at instanceof Home) {
@@ -127,12 +142,12 @@ public class Resident implements Comparable<Resident> {
     }
 
     public <T extends Storage> void store(Resource r) {
-        this.give(r);
         Class<? extends Storage> T = r.getResourceStorage();
         Coordinate destination = null;
         Map<Building, Coordinate> buildings = this.getResidency().buildings();
         for (Building b : buildings.keySet()) {
             if ((T.isInstance(b)) && !((T) b).isFull()) {
+                this.give(r);
                 destination = buildings.get(b);
                 break;
             }

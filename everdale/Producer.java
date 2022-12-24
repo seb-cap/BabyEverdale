@@ -9,14 +9,14 @@ public abstract class Producer extends Building {
     protected int generation;
     protected Resource res;
 
-    public Producer(int sizeX, int sizeY, int generationTime, Resource res) {
-        super(sizeX, sizeY);
+    public Producer(int sizeX, int sizeY, int generationTime, Resource res, Coordinate c) {
+        super(sizeX, sizeY, c);
         this.generationTime = generationTime;
         this.res = res;
     }
 
-    public Producer(int size, int generationTime, Resource res) {
-        this(size, size, generationTime, res);
+    public Producer(int size, int generationTime, Resource res, Coordinate c) {
+        this(size, size, generationTime, res, c);
     }
 
     public void generate(Resident rFor) {
@@ -27,7 +27,7 @@ public abstract class Producer extends Building {
         this.generation++;
         if (this.generation >= this.generationTime) {
             rFor.store(this.res);
-            this.generation = 0;
+            if (!(this instanceof Consumable)) this.generation = 0;
         }
     }
 }
