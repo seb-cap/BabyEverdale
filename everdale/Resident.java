@@ -21,6 +21,7 @@ public class Resident implements Comparable<Resident> {
     private Coordinate destination;
     private Coordinate location;
     private Coordinate returnDestination;
+    private Coordinate nextDestination;
     private Home home;
     private Village residency;
     private Item holding;
@@ -61,6 +62,21 @@ public class Resident implements Comparable<Resident> {
      * @param c The Coordinate to go to.
      */
     public void goTo(Coordinate c) {
+
+        if ((this.getHolding() instanceof Resource) && (!((Resource)holding).getResourceStorage().isInstance(this.residency.buildingAt(c)))) {
+            this.nextDestination = c;
+            return;
+        }
+
+        if (nextDestination != null) {
+            this.destination = new Coordinate(nextDestination);
+            this.nextDestination = null;
+            return;
+        }
+
+        if (!(residency.buildingAt(c) instanceof Storage) || this.nextDestination != null) {
+            this.returnDestination = null;
+        }
         this.destination = c;
         this.status = Status.working;
     }
@@ -162,6 +178,7 @@ public class Resident implements Comparable<Resident> {
                     this.residency.increaseInventory(here.getResource());
                 }
             }
+            System.out.println(nextDestination);
             if (returnDestination != null) this.goTo(returnDestination);
         }
         else if (at instanceof Home) {

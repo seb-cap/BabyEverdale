@@ -47,5 +47,12 @@ public abstract class Consumable extends Producer {
         }
         return false;
     }
+
+    /**
+     * @return A String Representation of the Consumable: &lt;Consumable&gt; (&lt;hp&gt;)
+     */
+    public String toString() {
+        return super.toString() + " (" + this.hp + ")";
+    }
 }
 
