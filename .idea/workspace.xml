@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Emergency fix! Loading fix, building map fix, give fix.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Consumable.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Consumable.java" afterDir="false" />
+    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Resident finishes storing Resource when interrupted">
       <change beforePath="$PROJECT_DIR$/everdale/Resident.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Resident.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Consumable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Consumable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +108,7 @@
       <workItem from="1671909817455" duration="14165000" />
       <workItem from="1671928559110" duration="354000" />
       <workItem from="1671928921161" duration="2590000" />
-      <workItem from="1671950857867" duration="4535000" />
+      <workItem from="1671950857867" duration="4821000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Text-Based Functions.">
       <created>1671593317964</created>
@@ -192,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671931087570</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Resident finishes storing Resource when interrupted">
+      <created>1671963235971</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1671963235971</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,10 +223,11 @@
     <MESSAGE value="Resident now properly stops eating trees while waiting." />
     <MESSAGE value="Comments Everywhere!" />
     <MESSAGE value="Emergency fix! Loading fix, building map fix, give fix." />
-    <option name="LAST_COMMIT_MESSAGE" value="Emergency fix! Loading fix, building map fix, give fix." />
+    <MESSAGE value="Resident finishes storing Resource when interrupted" />
+    <option name="LAST_COMMIT_MESSAGE" value="Resident finishes storing Resource when interrupted" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Everdale$EverdaleConsole.ic" NAME="EverdaleConsole Coverage Results" MODIFIED="1671930047033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Everdale$Everdale2dClient.ic" NAME="Everdale2dClient Coverage Results" MODIFIED="1671962609979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Everdale$Everdale2dClient.ic" NAME="Everdale2dClient Coverage Results" MODIFIED="1671963036051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
