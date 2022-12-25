@@ -178,7 +178,6 @@ public class Resident implements Comparable<Resident> {
                     this.residency.increaseInventory(here.getResource());
                 }
             }
-            System.out.println(nextDestination);
             if (returnDestination != null) this.goTo(returnDestination);
         }
         else if (at instanceof Home) {
