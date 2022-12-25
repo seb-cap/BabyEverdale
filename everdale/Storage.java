@@ -1,6 +1,9 @@
 package everdale;
 
 
+/**
+ * The Storage class represents a Storage for a Resource
+ */
 public abstract class Storage extends Building {
 
     protected Resource type;
@@ -9,10 +12,21 @@ public abstract class Storage extends Building {
 
     /**
      * Creates a new Storage of size 2x2 for the given Resource
-     * @param type the Resource for the Storage
+     * @param type The Resource for the Storage
+     * @param c The Coordinate of the Storage
      */
     public Storage(Resource type, Coordinate c) {
-        super(2, c);
+        this(2, type, c);
+    }
+
+    /**
+     * Creates a new Storage of the given size for the given Resource
+     * @param size The size of the Storage
+     * @param type The Resource for the Storage
+     * @param c The Coordinate of the Storage
+     */
+    public Storage(int size, Resource type, Coordinate c) {
+        super(size, c);
         this.type = type;
     }
 
@@ -32,16 +46,31 @@ public abstract class Storage extends Building {
         return this.contains;
     }
 
+    /**
+     * @return The Resource type of this Storage
+     */
     public Resource getResource() {
         return this.type;
     }
 
+    /**
+     * @return True if the Storage is full, False if not.
+     */
     public boolean isFull() {
         return this.capacity - this.contains <= 0;
     }
+
+    /**
+     * @return True if the Storage is empty, Flase if not.
+     */
     public boolean storageIsEmpty() {
         return this.contains == 0;
     }
+
+    /**
+     * Levels up the Storage. The implementer should increase the Storage capacity
+     * and update the level field.
+     */
     public abstract void levelUp();
 
     /**
@@ -74,6 +103,9 @@ public abstract class Storage extends Building {
 
     }
 
+    /**
+     * @return A String representation of the Storage: &lt;Resource&gt; Storage: &lt;contained&gt;/&lt;capacity&gt;
+     */
     public String toString() {
         return this.getResource() + " Storage: " + this.contains + "/" + this.capacity;
     }

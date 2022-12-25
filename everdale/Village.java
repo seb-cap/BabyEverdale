@@ -2,9 +2,20 @@ package everdale;
 
 import java.util.*;
 
+/**
+ * The Village class represents a Village in Everdale. The Village holds information
+ * on all Buildings, Residents, and Resources. It keeps track of coordinates for each
+ * Building in a Map.
+ */
 public class Village {
 
+    /**
+     * The X size of the Village. The maximum Coordinate will be (X_SIZE - 1, y)
+     */
     public static final int X_SIZE = 100;
+    /**
+     * The Y size of the Village. The maximum Coordinate will be (x, Y_SIZE - 1)
+     */
     public static final int Y_SIZE = 100;
 
     private Set<Coordinate> coords = new HashSet<>();
@@ -18,11 +29,13 @@ public class Village {
     private Set<Resident> residents;
 
     /**
-     * Initializes a Beginner Village
+     * Creates a new Village Object, initializes all of its data structures, and
+     * builds all basic starter Buildings as well as shrubbery (Consumables)
      */
     public Village() {
         this.layout = new TreeMap<>();
         this.residents = new TreeSet<>();
+        this.buildings = new HashMap<>();
         for (int x = 0; x < X_SIZE; x++) {
             for (int y = 0; y < Y_SIZE; y++) {
                 Coordinate cur = new Coordinate(x, y);
@@ -76,7 +89,6 @@ public class Village {
         }
 
         this.initializeInventory();
-        this.initializeBuildingsMap();
     }
 
     /**
@@ -90,6 +102,10 @@ public class Village {
         this.updateInventoryMaxes();
     }
 
+    /**
+     * Updates the max values of each inventory entry based on changes in
+     * the number of or levels of Storages
+     */
     public void updateInventoryMaxes() {
         Map<Resource, Integer> maxes = new HashMap<>();
         for (Storage s : this.storages) {
@@ -103,15 +119,31 @@ public class Village {
         }
     }
 
+    /**
+     * Adds the amount of the given resource to the inventory. This can cause
+     * the inventory to go above the limit.
+     * @param res The Resource to add
+     * @param amount The amount of Resource to add
+     */
     public void increaseInventory(Resource res, int amount) {
         this.inventory.get(res)[0] += amount;
     }
 
+    /**
+     * Adds one of the given resource to the inventory. This can cause the inventory
+     * to go above the limit.
+     * @param res The amount of Resource to add
+     */
     public void increaseInventory(Resource res) {
         increaseInventory(res, 1);
     }
 
-    public void updateBuildingsMap() {
+    /**
+     * Updates the internal Map of all Buildings. This is called every time
+     * a Building is built or destroyed.
+     */
+    private void updateBuildingsMap() {
+        this.buildings.clear();
         for (Coordinate c : this.layout.keySet()) {
             if(!(this.buildingAt(c) instanceof Empty)) {
                 this.buildings.put(this.buildingAt(c), c);
@@ -119,20 +151,19 @@ public class Village {
         }
     }
 
-    private void initializeBuildingsMap() {
-        this.buildings = new HashMap<>();
-        this.updateBuildingsMap();
-    }
-
+    /**
+     * @return The Map containing every Building paired with its Coordinate
+     */
     public Map<Building, Coordinate> buildings() {
         return this.buildings;
     }
 
     /**
-     * Builds a building at a coordinate
+     * Builds a building at a coordinate. If any of the Coordinates the building will cover are
+     * not Empty, the building will not be built.
      * @param c The Coordinate to build at
      * @param b The Building to build
-     * @return String feedback for whether the building was placed.
+     * @return True if the Building was build, False if not.
      */
     public boolean build(Coordinate c, Building b) {
         if (!allEmpty(c, b))  return false;
@@ -146,9 +177,16 @@ public class Village {
                 this.layout.put(this.getCoord(x, y), b);
             }
         }
+        this.updateBuildingsMap();
         return true;
     }
 
+    /**
+     * Checks if all Coordinates a building will take up are Empty
+     * @param c The base Coordinate of the Building
+     * @param b The Building
+     * @return True if all Coordinates are Empty, False if at least one is not Empty
+     */
     private boolean allEmpty(Coordinate c, Building b) {
         for (int x = b.getStartVal(c.getX(), b.getSizeX());
              x < b.getStartVal(c.getX(), b.getSizeX()) + b.getSizeX();
@@ -164,6 +202,13 @@ public class Village {
         return true;
     }
 
+    /**
+     * Gets the Coordinate object corresponding to an x, y pair. If a coordinate outside the
+     * bounds of the Village (X_SIZE and Y_SIZE) is given, an IllegalArgumentException will be thrown.
+     * @param x The X value of the Coordinate
+     * @param y The Y value of the Coordinate
+     * @return The corresponding Coordinate Object
+     */
     public Coordinate getCoord(int x, int y) {
         for (Coordinate c : this.coords) {
             if (c.equals(x, y)) return c;
@@ -171,37 +216,60 @@ public class Village {
         throw new IllegalArgumentException("Invalid Coordinate: " + x + ", " + y);
     }
 
+    /**
+     * Gets the Building at a given x y pair
+     * @param x The X value of the Building
+     * @param y The Y value of the Building
+     * @return The Building at the given coordinate
+     */
     public Building buildingAt(int x, int y) {
         return layout.get(getCoord(x, y));
     }
 
+    /**
+     * Gets the Building at a given Coordinate
+     * @param c The Coordinate of the Building
+     * @return The Building at the Coordinate
+     */
     public Building buildingAt(Coordinate c) {
         return buildingAt(c.getX(), c.getY());
     }
 
-    private void initializeShrubbery(Class<?> c) throws Exception {
-        if (!c.getSuperclass().equals(Consumable.class)) throw new IllegalArgumentException("Not Consumable.");
-
+    /**
+     * Places many new Consumables around the Village. 1/60 of the area will be covered.
+     * @param c The Consumable class to create
+     */
+    private void initializeShrubbery(Class<? extends Consumable> c) throws Exception {
         Random r = new Random();
         for (int i = 0; i < X_SIZE * Y_SIZE / 60; i++) {
             boolean built = false;
             while(!built) {
                 Coordinate coord = this.getCoord(r.nextInt(0, X_SIZE), r.nextInt(0, Y_SIZE));
-                built = this.build(coord, (Consumable)c.getDeclaredConstructor(Coordinate.class).newInstance(coord));
+                built = this.build(coord, c.getDeclaredConstructor(Coordinate.class).newInstance(coord));
             }
         }
     }
 
+    /**
+     * @return A copy of the Residents Set
+     */
     public Set<Resident> getResidents() {
         return new TreeSet<>(this.residents);
     }
 
+    /**
+     * Destroys the Building at the given Coordinate and replaces it with Empty.
+     * @param c The Coordinate of the Building to destroy
+     */
     public void destroy(Coordinate c) {
         c = this.getCoord(c.getX(), c.getY());
-        this.buildings.remove(this.buildingAt(c));
         this.layout.put(c, new Empty(c));
+        this.updateBuildingsMap();
     }
 
+    /**
+     * @return A String representation of the layout map formatted nicely.
+     */
     @Override
     public String toString() {
         // size of each entry in characters
@@ -234,12 +302,23 @@ public class Village {
         return ret.toString();
     }
 
+    /**
+     * Determines whether all Storages for the given Resource are full
+     * @param res The Resource to check for
+     * @return True if Storages are Full, False if not
+     */
     public boolean allStoragesFull(Resource res) {
         return this.inventory.get(res)[0] >= this.inventory.get(res)[1];
     }
 
-    public static Resident getResident(String name) {
-        for (Resident r : Game.home.getResidents()) {
+    /**
+     * Gets a Resident based on their name. If there are duplicate names, the first one
+     * returned by TreeSet will be picked. If the Resident does not exist, null will be returned.
+     * @param name The name of the Resident
+     * @return The Resident of that name
+     */
+    public Resident getResident(String name) {
+        for (Resident r : this.getResidents()) {
             if (r.getName().equalsIgnoreCase(name)) return r;
         }
         return null;

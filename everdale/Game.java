@@ -2,17 +2,42 @@ package everdale;
 
 import java.util.Queue;
 
+/**
+ * The Game class contains the main logic for playing Everdale. It handles a Queue of Actions
+ * and carries them out in order.
+ */
 public class Game {
 
-    protected static Client c;
+    /**
+     * The Client for the Game
+     */
+    public static Client c;
+    /**
+     * The home Village
+     */
     public static final Village home = new Village();
-    public static int tick = 0;
+    /**
+     * The current tick of the game
+     */
+    public static long tick = 0;
 
+    /**
+     * Sets the Client of the Game. This method should be called before play in the implementing class.
+     * @param c The Client to use.
+     */
     public static void setClient(Client c) {
         Game.c = c;
     }
 
+    /**
+     * Plays the Game by running the given Queue of Actions one at a time. Every time an Action is
+     * run, the tick counter increments by one. <br><br>
+     * If a Client has not been Set, an IllegalStateException will be thrown.
+     * @param actions The Queue of Actions.
+     */
     public static void play(Queue<Action> actions) {
+
+        if (c == null) throw new IllegalStateException("Client has not been set!");
 
         while (!actions.isEmpty()) {
             Action cur = actions.peek();
@@ -37,16 +62,13 @@ public class Game {
                     c.prompt(checkAction.who());
                     break;
                 case "Pass":
-                    c.prompt("Passed.");
                     break;
                 default:
                     c.prompt("Invalid");
                     break;
             }
-            c.prompt(tick);
             for (Resident r : home.getResidents()) {
                 r.walk();
-                c.prompt(r.getName() + " is at " + r.getLocation() + " (" + home.buildingAt(r.getLocation()) + ").");
             }
             tick++;
         }

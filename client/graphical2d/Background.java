@@ -21,6 +21,11 @@ import java.util.List;
 import java.util.Set;
 
 
+/**
+ * The Background class is a JPanel that represents the background
+ * of the Everdale game. This holds the information for moving the view
+ * and logic for drawing sprites.
+ */
 public class Background extends JPanel implements MouseListener, ActionListener {
 
 
@@ -31,10 +36,18 @@ public class Background extends JPanel implements MouseListener, ActionListener 
     private int currentViewY;
 
 
+    /**
+     * Creates a new Background object and initializes it
+     */
     public Background() {
         this.initBackground();
     }
 
+    /**
+     * Initializes the Background by setting up event listeners and
+     * specifying settings such as color, size, etc. Also initializes
+     * the buildings Set and the villagers Set. Begins the Game loop.
+     */
     private void initBackground() {
         this.addMouseListener(this);
         this.setBackground(Color.darkGray);
@@ -57,6 +70,10 @@ public class Background extends JPanel implements MouseListener, ActionListener 
 
     }
 
+    /**
+     * Repaints the screen every update.
+     * @param g the Graphics object to protect
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -65,6 +82,10 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * Draws each building and updates the villagers.
+     * @param g the Graphics object to draw onto
+     */
     private void doDrawing(Graphics2D g) {
         for (Building b : buildings) {
             // If out of view, don't draw
@@ -103,10 +124,26 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         }
     }
 
+    /**
+     * Draws an image of a given Building at its coordinates.
+     * @param g The Graphics to draw onto
+     * @param i The BufferedImage to draw
+     * @param b The Building being drawn
+     */
     private void drawImage(Graphics2D g, BufferedImage i, Building b) {
-        drawImage(g, i, b.getX(), b.getY(), b.getSizeX(), b.getSizeY());
+        drawImage(g, i, b.getStartVal(b.getX(), b.getSizeX()), b.getStartVal(b.getY(), b.getSizeY()),
+                b.getSizeX(), b.getSizeY());
     }
 
+    /**
+     * Draws an image at a given location
+     * @param g The Graphics to draw onto
+     * @param i The BufferedImage to draw
+     * @param locX The x location of the Object
+     * @param locY The y location of the Object
+     * @param sizeX The x size of the Object (width)
+     * @param sizeY The y size of the Object (height)
+     */
     private void drawImage(Graphics2D g, BufferedImage i, int locX, int locY, int sizeX, int sizeY) {
         for (int y = 0; y < sizeY * 10; y+= 10) {
             for(int x = 0; x < sizeX * 10; x+=10) {
@@ -115,64 +152,99 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         }
     }
 
+    /**
+     * Gets the correct sprite value for a given Storage's state.
+     * @param s The Storage being drawn.
+     * @return The int corresponding to the Storage's state:<br>
+     * 0 for empty,<br>1 for partially full,<br>2 for full.
+     */
     private int storageSpriteFinder(Storage s) {
         return s.storageIsEmpty() ? 0 : s.isFull() ? 2 : 1;
     }
 
+    /**
+     * Gets the correct sprite value for a given Cart's state.
+     * @param c The Cart being drawn.
+     * @return The int corresponding to the Cart's state:<br>
+     * 0 for empty,<br>1 for filling.
+     */
     private int cartSpriteFinder(Cart c) {
         return c.progressIsEmpty() ? 0 : 1;
     }
 
+    /**
+     * Checks whether a certain coordinate has been clicked based on its absolute coordinates
+     * and the relative coordinate from the view changes.
+     * @param clickedX The x coordinate clicked.
+     * @param clickedY The y coordinate clicked.
+     * @param absoluteX The true x coordinate being checked.
+     * @param absoluteY The true y coordinate being checked.
+     * @return True if the coordinates align, false otherwise.
+     */
     private boolean clicked(int clickedX, int clickedY, int absoluteX, int absoluteY) {
         return absoluteX - this.currentViewX / 10 == clickedX && absoluteY - this.currentViewY / 10 == clickedY;
 
     }
 
-    // Mouse Listener Methods
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
+    /**
+     * When the Mouse is pressed, does an action:<br>
+     * LMB - Selects Villagers and moves them<br>
+     * RMB - Gets info about the clicked Building
+     * @param e the event to be processed
+     */
     @Override
     public void mousePressed(MouseEvent e) {
+        int mouseButton = e.getButton();
         int x = e.getX() / 10;
         int y = e.getY() / 10;
-        if (x + currentViewX / 10 > Village.X_SIZE - 1 || y + currentViewY / 10 > Village.Y_SIZE - 1) return;
-        if (this.selectedVillager != null) {
-            Graphical2dClient.actions.add(
-                    new Command(this.selectedVillager.asResident(),
-                            new Coordinate(x + currentViewX / 10, y + currentViewY / 10)
-                    )
-            );
-        }
+        if (mouseButton == MouseEvent.BUTTON1) {
+            if (adjustedX(x) > Village.X_SIZE - 1 || adjustedY(y) > Village.Y_SIZE - 1) return;
+            if (this.selectedVillager != null) {
+                Graphical2dClient.actions.add(
+                        new Command(this.selectedVillager.asResident(),
+                                new Coordinate(adjustedX(x), adjustedY(y))
+                        )
+                );
+            }
 
-        for (Villager v : this.villagers) {
-            this.selectedVillager = null;
-            v.deselect();
-            if (clicked(x, y, v.getX(), v.getY())) {
-                this.selectedVillager = v;
-                v.select();
+            for (Villager v : this.villagers) {
+                this.selectedVillager = null;
+                v.deselect();
+                if (clicked(x, y, v.getX(), v.getY())) {
+                    this.selectedVillager = v;
+                    v.select();
+                }
             }
         }
+        else if (mouseButton == MouseEvent.BUTTON3) {
+            Game.c.prompt(Game.home.buildingAt(adjustedX(x), adjustedY(y)));
+        }
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
+    /**
+     * Gets the X value adjusted for view changes
+     * @param x The base X value
+     * @return The adjusted X value
+     */
+    private int adjustedX(int x) {
+        return x + currentViewX / 10;
     }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
+    /**
+     * Gets the Y value adjusted for view changes
+     * @param y The base Y value
+     * @return The adjusted Y value
+     */
+    private int adjustedY(int y) {
+        return y + currentViewY / 10;
     }
 
-    @Override
-    public void mouseExited(MouseEvent e) {
 
-    }
-
-    // Will Run once every DELAY ms
+    /**
+     * This function runs once every DELAY ms.
+     * It updates the locations of Villagers, plays the game, and redraws the Image.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         for (Villager v : villagers) {
@@ -184,30 +256,54 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         repaint();
     }
 
+    /**
+     * Moves the current view to the right as long as it is not too far.
+     */
     public void moveRight() {
         if (this.currentViewX / 10 < Village.X_SIZE - 1) this.currentViewX += 10;
     }
 
+    /**
+     * Moves the current view to the left as long as it is not zero.
+     */
     public void moveLeft() {
         if (this.currentViewX > 0) this.currentViewX -= 10;
     }
 
+    /**
+     * Moves the current view down as long as it is not too far.
+     */
     public void moveDown() {
         if (this.currentViewY / 10 < Village.Y_SIZE - 1) this.currentViewY += 10;
     }
 
+    /**
+     * Moves the current view up as long as it is not zero.
+     */
     public void moveUp() {
         if (this.currentViewY > 0) this.currentViewY -= 10;
     }
 
 
+    /**
+     * The Keys class monitors key presses for the Background.
+     */
     private static class Keys extends KeyAdapter {
 
         private final Background b;
 
+        /**
+         * Creates a new Keys object for the given Background
+         * @param b The Background using the Keys Object
+         */
         public Keys(Background b) {
             this.b = b;
         }
+
+        /**
+         * Moves the view when an arrow key is pressed.
+         * @param e the event to be processed
+         */
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_RIGHT -> b.moveRight();
@@ -216,5 +312,19 @@ public class Background extends JPanel implements MouseListener, ActionListener 
                 case KeyEvent.VK_UP -> b.moveUp();
             }
         }
+    }
+
+    // Unused Methods from MouseListener.
+    public void mouseReleased(MouseEvent e) {
+
+    }
+    public void mouseEntered(MouseEvent e) {
+
+    }
+    public void mouseExited(MouseEvent e) {
+
+    }
+    public void mouseClicked(MouseEvent e) {
+
     }
 }

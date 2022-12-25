@@ -1,12 +1,19 @@
 package everdale;
 
 
+/**
+ * The Cart class represents a Cart with an order that must be fulfilled.
+ */
 public class Cart extends Building {
 
     private Resource request;
     private int needed;
     private int fulfilled;
 
+    /**
+     * Creates a new Cart at the given Coordinate
+     * @param c The Coordinate of the Cart
+     */
     public Cart(Coordinate c) {
         super(2, c);
     }
@@ -32,6 +39,9 @@ public class Cart extends Building {
         return Math.min(0, this.fulfilled - this.needed);
     }
 
+    /**
+     * @return whether the Cart's fulfillment is zero.
+     */
     public boolean progressIsEmpty() {
         return this.fulfilled == 0;
     }

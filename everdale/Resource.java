@@ -1,19 +1,25 @@
 package everdale;
 
 
+/**
+ * The Resource enum contains various Resources to be used in construction and production
+ */
 public enum Resource implements Item {
-    wood,
-    clay,
-    stone,
-    brick,
-    plank,
-    soup;
+    Wood,
+    Clay,
+    Stone,
+    Brick,
+    Plank,
+    Soup;
 
-    public Class getResourceStorage() {
-        if (this == wood) return WoodStorage.class;
-        if (this == clay) return ClayStorage.class;
-        if (this == stone) return StoneStorage.class;
-        if (this == soup) return Kitchen.class;
+    /**
+     * @return The Class for the Storage of the Resource
+     */
+    public Class<? extends Storage> getResourceStorage() {
+        if (this == Wood) return WoodStorage.class;
+        if (this == Clay) return ClayStorage.class;
+        if (this == Stone) return StoneStorage.class;
+        if (this == Soup) return Kitchen.class;
         // TODO add brick and plank
         return null;
     }

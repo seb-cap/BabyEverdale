@@ -7,6 +7,10 @@ import java.io.File;
 import java.io.IOException;
 
 
+/**
+ * The SpriteSheet class is a helper class with methods to get Sprites from a SpriteSheet.
+ * It also contains constants holding important Sprites.
+ */
 public class SpriteSheet {
 
     public static final String VILLAGER_SPRITE_SHEET = "client/graphical2d/images/characters.png";
@@ -24,6 +28,11 @@ public class SpriteSheet {
     public static final int LEFT = 3;
 
 
+    /**
+     * Returns the BufferedImage Sprite when the entire file is the sprite
+     * @param fileName The name of the File containing the entire Sprite
+     * @return The BufferedImage containing the full Sprite
+     */
     public static BufferedImage getSprite(String fileName) {
         try {
             return ImageIO.read(new File(fileName));
@@ -33,6 +42,17 @@ public class SpriteSheet {
         }
     }
 
+    /**
+     * Gets an Array of BufferedImage Sprites from a uniform SpriteSheet
+     * @param fileName The String name of the SpriteSheet file
+     * @param startX The x value to start searching from
+     * @param startY The y value to start searching from
+     * @param rows The number of rows to extract
+     * @param cols The number of columns to extract
+     * @param width The width of each Sprite
+     * @param height The height of each Sprite
+     * @return The Array of BufferedImages containing all the specified Sprites.
+     */
     public static BufferedImage[] getSprites(String fileName, int startX, int startY, int rows, int cols, int width, int height) {
         try {
             BufferedImage allSprites = ImageIO.read(new File(fileName));
@@ -55,10 +75,25 @@ public class SpriteSheet {
         }
     }
 
+    /**
+     * Gets an Array of BufferedImage Sprites from a uniform SpriteSprite sheet with
+     * each Sprite 10x10 pixels and starting from the top left.
+     * @param fileName The String name of the SpriteSheet file
+     * @param rows The number of rows to extract
+     * @param cols The number of columns to extract
+     * @return The Array of BufferedImages containing all the Sprites
+     */
     public static BufferedImage[] getSprites(String fileName, int rows, int cols) {
         return getSprites(fileName, 0, 0, rows, cols, 10, 10);
     }
 
+    /**
+     * Creates a new BufferedImage with the background of an Image removed by replacing all
+     * pixels of that Color with transparent pixels.
+     * @param image The Image to manipulate
+     * @param c The background Color to be replaced
+     * @return A new BufferedImage identical to the original, but with the background removed.
+     */
     private static BufferedImage removeBackground(BufferedImage image, Color c) {
         BufferedImage transparent = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
         for (int x = 0; x < image.getWidth(); x++) {

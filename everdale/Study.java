@@ -6,6 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The Study class represents the place where research takes place.
+ * If a Resident is assigned to the Study, scrolls are produced.
+ */
 public class Study extends Building {
     private static List<Research> unsearched = initializeResearch();
     private static List<Research> searched = new ArrayList<>();
@@ -13,10 +17,17 @@ public class Study extends Building {
 
     public static List<Research> viewableSearched = Collections.unmodifiableList(searched);
 
+    /**
+     * Creates a new Study Object at the given Coordinate
+     * @param c The Coordinate of the Study
+     */
     public Study(Coordinate c) {
         super(3, c);
     }
 
+    /**
+     * Adds one Scroll to the current Research
+     */
     public void research() {
         if (current == null) return;
         if (current.addScrolls(1)) {
@@ -24,6 +35,10 @@ public class Study extends Building {
         }
     }
 
+    /**
+     * Initializes the Research tree by adding all Researches to a List
+     * @return The List of all Researches in Everdale
+     */
     private static List<Research> initializeResearch() {
         List<Research> all = new ArrayList<>();
         // Wood Storage Level 2

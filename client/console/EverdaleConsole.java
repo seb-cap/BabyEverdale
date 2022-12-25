@@ -6,15 +6,38 @@ import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+
+/**
+ * The EverdaleConsole class is a Client for Everdale.<br>
+ * It uses the java console to prompt the user for actions
+ * that are then sent to the Everdale package for gameplay.
+ */
 public class EverdaleConsole implements Client {
 
+
+    /**
+     * Prompts the user with information via the console
+     * @param o The Object to be prompted
+     */
     public void prompt(Object o) {
         System.out.println(o);
     }
+
+    /**
+     * Prints the Object to the console
+     * @param o The Object to be prompted
+     */
     private static void promptS(Object o) {
         System.out.println(o);
     }
 
+    /**
+     * Prompts the user for the next action, then adds it to the Action Queue.
+     * This includes View, Build, Command, Pass, Inspect, and Check.
+     * Invalid inputs are accounted for.
+     * @param acs the Action Queue
+     * @param console the Scanner to read inputs
+     */
     private static void addAction(Queue<Action> acs, Scanner console) {
         promptS("What's Next? (View, Build, Command, Pass, Inspect, Check)");
         String next = console.nextLine().toLowerCase();
@@ -43,7 +66,7 @@ public class EverdaleConsole implements Client {
                 }
                 break;
             case "view":
-                acs.add(new View());
+                acs.add(Action.VIEW);
                 break;
             case "pass":
                 promptS("How many times?");
