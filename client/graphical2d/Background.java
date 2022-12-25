@@ -217,7 +217,7 @@ public class Background extends JPanel implements MouseListener, ActionListener 
             }
         }
         else if (mouseButton == MouseEvent.BUTTON3) {
-            Game.c.prompt(Game.home.buildingAt(adjustedX(x), adjustedY(y)));
+            Graphical2dClient.ex.prompt(Game.home.buildingAt(adjustedX(x), adjustedY(y)));
         }
     }
 

@@ -215,7 +215,7 @@ public class Resident implements Comparable<Resident> {
      * @return True if the Item was given, False if it was not.
      */
     public boolean give(Item i) {
-        if (this.holding == null) return false;
+        if (this.holding != null) return false;
         this.holding = i;
         return true;
     }

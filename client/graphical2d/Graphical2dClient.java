@@ -16,6 +16,7 @@ import java.util.Queue;
 public class Graphical2dClient extends JFrame implements Client {
 
     protected static Queue<everdale.Action> actions;
+    protected static Graphical2dClient ex;
 
     /**
      * Creates a new Graphical2dClient Object and initializes the UI.
@@ -56,7 +57,7 @@ public class Graphical2dClient extends JFrame implements Client {
     public static void main(String[] args) {
 
         EventQueue.invokeLater(() -> {
-            Graphical2dClient ex = new Graphical2dClient();
+            ex = new Graphical2dClient();
             Game.setClient(ex);
             ex.setVisible(true);
         });

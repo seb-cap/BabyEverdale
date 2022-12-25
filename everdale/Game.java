@@ -11,7 +11,7 @@ public class Game {
     /**
      * The Client for the Game
      */
-    public static Client c;
+    protected static Client c;
     /**
      * The home Village
      */

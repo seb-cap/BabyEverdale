@@ -28,11 +28,14 @@ public class Village {
 
     private Set<Resident> residents;
 
+    private boolean initializing;
+
     /**
      * Creates a new Village Object, initializes all of its data structures, and
      * builds all basic starter Buildings as well as shrubbery (Consumables)
      */
     public Village() {
+        this.initializing = true;
         this.layout = new TreeMap<>();
         this.residents = new TreeSet<>();
         this.buildings = new HashMap<>();
@@ -89,6 +92,8 @@ public class Village {
         }
 
         this.initializeInventory();
+        this.initializing = false;
+        this.updateBuildingsMap();
     }
 
     /**
@@ -177,7 +182,7 @@ public class Village {
                 this.layout.put(this.getCoord(x, y), b);
             }
         }
-        this.updateBuildingsMap();
+        if (!initializing) this.updateBuildingsMap();
         return true;
     }
 
