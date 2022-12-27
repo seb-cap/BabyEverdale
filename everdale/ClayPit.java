@@ -9,7 +9,7 @@ public class ClayPit extends Producer {
     /**
      * The number of ticks it takes for one Clay to be produced from a Clay Pit.
      */
-    public static final int GENERATION_TIME = 10;
+    public static final int GENERATION_TIME = 90;
 
     /**
      * Creates a new ClayPit at the given Coordinate

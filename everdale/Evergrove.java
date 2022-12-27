@@ -9,7 +9,7 @@ public class Evergrove extends Producer {
     /**
      * The number of ticks it takes to generate one Wood
      */
-    public static final int GENERATION_TIME = 5;
+    public static final int GENERATION_TIME = 60;
 
     /**
      * Creates a new Evergrove at the specified Coordinate

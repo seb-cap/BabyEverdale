@@ -49,7 +49,7 @@ public class Graphical2dClient extends JFrame implements Client {
      * @param o The Object to be prompted
      */
     public void prompt(Object o) {
-        System.out.println(o); // TODO
+        System.out.println(o);
     }
 
 

@@ -12,7 +12,7 @@ public class SmallClay extends Consumable {
      * @param c The Coordinate of the SmallClay
      */
     public SmallClay(Coordinate c) {
-        super(Resource.Clay, 1, ClayPit.GENERATION_TIME, 4, c);
+        super(Resource.Clay, 1, ClayPit.GENERATION_TIME / 2, 4, c);
     }
 
 }

@@ -42,7 +42,7 @@ public abstract class Producer extends Building {
      * @return True if a Resource was generated, False if it was not.
      */
     public boolean generate(Resident rFor) {
-        if (rFor.getResidency().allStoragesFull(this.res)) {
+        if (this.level == 0 || rFor.getResidency().allStoragesFull(this.res)) {
             rFor.setStatus(Resident.Status.waiting);
             return false;
         }

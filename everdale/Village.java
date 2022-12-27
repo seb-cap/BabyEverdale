@@ -47,7 +47,8 @@ public class Village {
             }
         }
         // set up basic structures
-        this.build(this.getCoord(X_SIZE / 2, Y_SIZE / 2), new Kitchen(this.getCoord(X_SIZE / 2, Y_SIZE / 2)));
+        Kitchen k = new Kitchen(this.getCoord(X_SIZE / 2, Y_SIZE / 2));
+        this.build(this.getCoord(X_SIZE / 2, Y_SIZE / 2), k);
 
         this.build(this.getCoord(X_SIZE / 10, Y_SIZE / 10), new ClayPit(this.getCoord(X_SIZE / 10, Y_SIZE / 10)));
         this.build(this.getCoord(X_SIZE - X_SIZE / 10 - 1, Y_SIZE - Y_SIZE / 10 - 1), new ClayPit(this.getCoord(X_SIZE - X_SIZE / 10 - 1, Y_SIZE - Y_SIZE / 10 - 1)));
@@ -56,7 +57,7 @@ public class Village {
         this.build(this.getCoord(X_SIZE / 10, Y_SIZE / 2), new Evergrove(this.getCoord(X_SIZE / 10, Y_SIZE / 2)));
         this.build(this.getCoord(X_SIZE / 2, Y_SIZE - Y_SIZE / 10 - 1), new Evergrove(this.getCoord(X_SIZE / 2, Y_SIZE - Y_SIZE / 10 - 1)));
 
-        this.build(this.getCoord(X_SIZE / 10, Y_SIZE - Y_SIZE / 10 - 1), new StonePit(this.getCoord(X_SIZE / 10, Y_SIZE - Y_SIZE / 10 - 1)));
+        this.build(this.getCoord(X_SIZE / 10, Y_SIZE - Y_SIZE / 10 - 1), new StoneMine(this.getCoord(X_SIZE / 10, Y_SIZE - Y_SIZE / 10 - 1)));
 
         // First Home
         Coordinate houseCoord = this.getCoord(X_SIZE / 2, Y_SIZE / 2 + Y_SIZE / 10);
@@ -75,6 +76,8 @@ public class Village {
         WoodStorage first = new WoodStorage(this.getCoord(X_SIZE / 2 - X_SIZE / 10, Y_SIZE / 2));
         this.build(this.getCoord(X_SIZE / 2 - X_SIZE / 10, Y_SIZE / 2), first);
         this.storages.add(first);
+
+        this.storages.add(k);
 
         this.build(this.getCoord(X_SIZE - X_SIZE / 20, Y_SIZE / 2), new Gate(this.getCoord(X_SIZE - X_SIZE / 20, Y_SIZE / 2)));
 

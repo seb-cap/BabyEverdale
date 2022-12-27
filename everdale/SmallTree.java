@@ -12,7 +12,7 @@ public class SmallTree extends Consumable {
      * @param c The Coordinate of the SmallTree
      */
     public SmallTree(Coordinate c) {
-        super(Resource.Wood, 1, Evergrove.GENERATION_TIME, 4, c);
+        super(Resource.Wood, 1, Evergrove.GENERATION_TIME / 2, 4, c);
     }
 
 }

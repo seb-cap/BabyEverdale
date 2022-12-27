@@ -61,7 +61,7 @@ public abstract class Storage extends Building {
     }
 
     /**
-     * @return True if the Storage is empty, Flase if not.
+     * @return True if the Storage is empty, False if not.
      */
     public boolean storageIsEmpty() {
         return this.contains == 0;
@@ -69,7 +69,7 @@ public abstract class Storage extends Building {
 
     /**
      * Levels up the Storage. The implementer should increase the Storage capacity
-     * and update the level field.
+     * and update the level field, then update the Village inventory.
      */
     public abstract void levelUp();
 

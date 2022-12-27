@@ -12,7 +12,7 @@ public class SmallStone extends Consumable {
      * @param c The Coordinate of the SmallStone
      */
     public SmallStone(Coordinate c) {
-        super(Resource.Stone, 1, StonePit.GENERATION_TIME, 4, c);
+        super(Resource.Stone, 1, StoneMine.GENERATION_TIME / 2, 4, c);
     }
 
 }

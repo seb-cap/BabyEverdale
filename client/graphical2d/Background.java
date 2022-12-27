@@ -107,7 +107,15 @@ public class Background extends JPanel implements MouseListener, ActionListener 
                 continue;
             }
             if (b instanceof Evergrove) {
-                drawImage(g, SpriteSheet.EVERGROVE_SPRITE, b);
+                drawImage(g, SpriteSheet.EVERGROVE_SPRITES[b.getLevel()], b);
+                continue;
+            }
+            if (b instanceof StoneMine) {
+                drawImage(g, SpriteSheet.STONE_MINE_SPRITES[b.getLevel()], b);
+                continue;
+            }
+            if (b instanceof ClayPit) {
+                drawImage(g, SpriteSheet.CLAY_PIT_SPRITES[b.getLevel()], b);
                 continue;
             }
             if (b instanceof WoodStorage) {
@@ -117,6 +125,35 @@ public class Background extends JPanel implements MouseListener, ActionListener 
             if (b instanceof BuildCart) {
                 drawImage(g, SpriteSheet.BUILD_CART_SPRITES[cartSpriteFinder((BuildCart)b)], b);
                 continue;
+            }
+            if (b instanceof ShipCart) {
+                drawImage(g, SpriteSheet.SHIP_CART_SPRITES[cartSpriteFinder((ShipCart)b)], b);
+                continue;
+            }
+            if (b instanceof EventCart) {
+                drawImage(g, SpriteSheet.EVENT_CART_SPRITES[cartSpriteFinder((EventCart)b)], b);
+                continue;
+            }
+            if (b instanceof OttoCart) {
+                drawImage(g, SpriteSheet.OTTO_CART_SPRITES[cartSpriteFinder((OttoCart)b)], b);
+                continue;
+            }
+            if (b instanceof Kitchen) {
+                drawImage(g, SpriteSheet.KITCHEN_SPRITES[b.getLevel()], b);
+                continue;
+            }
+            if (b instanceof Home) {
+                drawImage(g, SpriteSheet.HOME_SPRITES[b.getLevel()], b);
+                continue;
+            }
+            if (b instanceof Gate) {
+                drawImage(g, SpriteSheet.GATE_SPRITE, b);
+            }
+            if (b instanceof Study) {
+                drawImage(g, SpriteSheet.STUDY_SPRITES[b.getLevel()], b);
+            }
+            if (b instanceof Patch) {
+                drawImage(g, SpriteSheet.PATCH_SPRITE, b);
             }
         }
         for (Villager v : villagers) {
@@ -306,10 +343,11 @@ public class Background extends JPanel implements MouseListener, ActionListener 
          */
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
-                case KeyEvent.VK_RIGHT -> b.moveRight();
-                case KeyEvent.VK_LEFT -> b.moveLeft();
-                case KeyEvent.VK_DOWN -> b.moveDown();
-                case KeyEvent.VK_UP -> b.moveUp();
+                case KeyEvent.VK_RIGHT, KeyEvent.VK_D -> b.moveRight();
+                case KeyEvent.VK_LEFT, KeyEvent.VK_A -> b.moveLeft();
+                case KeyEvent.VK_DOWN, KeyEvent.VK_S -> b.moveDown();
+                case KeyEvent.VK_UP, KeyEvent.VK_W -> b.moveUp();
+
             }
         }
     }

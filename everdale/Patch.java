@@ -9,7 +9,7 @@ public class Patch extends Producer {
     /**
      * The number of ticks it takes to generate one Soup
      */
-    public static final int GENERATION_TIME = 7;
+    public static final int GENERATION_TIME = 80;
 
     /**
      * Creates a new Patch Object at the specified Coordinate

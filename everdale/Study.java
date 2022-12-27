@@ -11,6 +11,7 @@ import java.util.Set;
  * If a Resident is assigned to the Study, scrolls are produced.
  */
 public class Study extends Building {
+    private static final int MAX_LEVEL = 16;
     private static List<Research> unsearched = initializeResearch();
     private static List<Research> searched = new ArrayList<>();
     private static Research current;
@@ -80,6 +81,16 @@ public class Study extends Building {
 		}*/
 
         return all;
+    }
+
+    /**
+     * Levels up the Study. This unlocks
+     */
+    public void levelUp() {
+        if (this.level < MAX_LEVEL) {
+            this.level++;
+        }
+        // TODO
     }
 
 }

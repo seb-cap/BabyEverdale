@@ -14,7 +14,7 @@ public class Gate extends Building {
      * @param c The Coordinate of the Gate
      */
     public Gate(Coordinate c) {
-        super(3, 5, c);
+        super(2, 24, c);
         color = Color.yellow;
     }
 

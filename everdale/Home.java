@@ -27,7 +27,7 @@ public class Home extends Building {
      */
     public Home(String name, Coordinate c) {
         super(2, c);
-        this.color = Color.yellow;
+        this.color = Color.orange;
         this.owner = new Resident(name, this);
     }
 

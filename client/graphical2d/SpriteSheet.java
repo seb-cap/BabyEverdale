@@ -13,13 +13,29 @@ import java.io.IOException;
  */
 public class SpriteSheet {
 
+    // Villager
     public static final String VILLAGER_SPRITE_SHEET = "client/graphical2d/images/characters.png";
+    // Consumables
     public static final BufferedImage SMALL_TREE_SPRITE = getSprite("client/graphical2d/images/small_tree.png");
-    public static final BufferedImage EVERGROVE_SPRITE = getSprite("client/graphical2d/images/evergrove.png");
-    public static final BufferedImage[] WOOD_STORAGE_SPRITES = getSprites("client/graphical2d/images/wood_storage.png", 12, 3);
     public static final BufferedImage SMALL_STONE_SPRITE = getSprite("client/graphical2d/images/small_stone.png");
     public static final BufferedImage SMALL_CLAY_SPRITE = getSprite("client/graphical2d/images/small_clay.png");
+    // Producers
+    public static final BufferedImage[] EVERGROVE_SPRITES = getSprites("client/graphical2d/images/evergrove.png", 2, 1);
+    public static final BufferedImage[] STONE_MINE_SPRITES = getSprites("client/graphical2d/images/stone_mine.png", 2, 1);
+    public static final BufferedImage[] CLAY_PIT_SPRITES = getSprites("client/graphical2d/images/clay_pit.png", 2, 1);
+    // Storages
+    public static final BufferedImage[] WOOD_STORAGE_SPRITES = getSprites("client/graphical2d/images/wood_storage.png", 12, 3);
+    public static final BufferedImage[] KITCHEN_SPRITES = getSprites("client/graphical2d/images/kitchen.png", 12, 1);
+    // Carts
     public static final BufferedImage[] BUILD_CART_SPRITES = getSprites("client/graphical2d/images/build_cart.png", 1, 2);
+    public static final BufferedImage[] SHIP_CART_SPRITES = getSprites("client/graphical2d/images/ship_cart.png", 1, 2);
+    public static final BufferedImage[] OTTO_CART_SPRITES = getSprites("client/graphical2d/images/otto_cart.png", 1, 2);
+    public static final BufferedImage[] EVENT_CART_SPRITES = getSprites("client/graphical2d/images/event_cart.png", 1, 2);
+    // Other
+    public static final BufferedImage[] HOME_SPRITES = getSprites("client/graphical2d/images/home.png", 10, 1);
+    public static final BufferedImage GATE_SPRITE = getSprite("client/graphical2d/images/gate.png");
+    public static final BufferedImage[] STUDY_SPRITES = getSprites("client/graphical2d/images/study.png", 16, 1);
+    public static final BufferedImage PATCH_SPRITE = getSprite("client/graphical2d/images/patch.png");
 
 
     public static final int UP = 0;

@@ -18,7 +18,7 @@ public abstract class Building {
     public Building(int sizeX, int sizeY, Coordinate c) {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        if (this instanceof Producer) {
+        if (this instanceof Evergrove || this instanceof StoneMine || this instanceof ClayPit) {
             this.level = 0;
         }
         else {
