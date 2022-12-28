@@ -30,6 +30,10 @@ public class Kitchen extends Storage { //TODO
         this.inventory = new HashMap<>();
     }
 
+    public void drink() {
+        this.contains--;
+    }
+
     /**
      * Levels up the Kitchen. TODO: level up food storage.
      */

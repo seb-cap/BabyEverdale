@@ -27,6 +27,7 @@ public class Resident implements Comparable<Resident> {
     private Item holding;
     private Status status;
     private boolean halted;
+    private int hunger;
 
     /**
      * Sets the Status of the Resident to the given Status
@@ -40,7 +41,10 @@ public class Resident implements Comparable<Resident> {
      * The Status enum contains various statuses a Resident can be in
      */
     public enum Status {
-        working, idle, waiting, away
+        working,
+        idle,
+        waiting,
+        away
     }
 
     /**
@@ -54,6 +58,7 @@ public class Resident implements Comparable<Resident> {
         this.home = house;
         this.status = Status.idle;
         this.halted = false;
+        this.hunger = 160;
     }
 
     /**
@@ -63,11 +68,13 @@ public class Resident implements Comparable<Resident> {
      */
     public void goTo(Coordinate c) {
 
+        // If holding an Item, finish storing first
         if ((this.getHolding() instanceof Resource) && (!((Resource)holding).getResourceStorage().isInstance(this.residency.buildingAt(c)))) {
             this.nextDestination = c;
             return;
         }
 
+        // After Storing Item, go to the place
         if (nextDestination != null) {
             this.destination = new Coordinate(nextDestination);
             this.nextDestination = null;
@@ -78,7 +85,8 @@ public class Resident implements Comparable<Resident> {
             this.returnDestination = null;
         }
         this.destination = c;
-        this.status = Status.working;
+        if (this.residency.buildingAt(this.destination) instanceof Home) this.status = Status.idle;
+        else this.status = Status.working;
     }
 
     /**
@@ -111,7 +119,22 @@ public class Resident implements Comparable<Resident> {
      * work at the current coordinate. If the Resident is halted, nothing will happen.
      */
     public void walk() {
+        System.out.println(this.hunger + ", " +
+                this.residency.buildingAt(this.destination).toString() + ", " +
+                ((this.returnDestination != null) ?
+                this.residency.buildingAt(this.returnDestination).toString() :
+                "null" ) +
+                ", " + this.holding + ", " + this.status);
         if (halted) return;
+
+        if (needsSoup() && !workingAtPatch()) {
+            this.eat();
+        }
+        else {
+            if (!workingAtPatch() && this.status == Status.working) {
+                this.hunger--;
+            }
+        }
 
         boolean walking = false;
         if (location.getX() > destination.getX()) {
@@ -133,6 +156,30 @@ public class Resident implements Comparable<Resident> {
 
         if (!walking) this.work();
 
+    }
+
+    private boolean workingAtPatch() {
+        return (this.residency.buildingAt(this.destination) instanceof Patch) ||
+                (this.returnDestination != null && this.residency.buildingAt(this.returnDestination) instanceof Patch);
+    }
+
+    /**
+     * Determines if a Resident needs soup (i.e. their hunger is at 0).
+     * @return True if the Resident needs Soup, False if not.
+     */
+    public boolean needsSoup() {
+        return this.hunger <= 0;
+    }
+
+    /**
+     * Sends the Resident to the Kitchen to get food.
+     * Interrupts the Resident's current process if they are not holding an Item.
+     * If they are holding an Item, they will finish putting it away, then go get food.
+     */
+    public void eat() {
+        if (returnDestination == null) returnDestination = new Coordinate(destination);
+        Coordinate kCoord = this.residency.k.getCoord();
+        if (!this.destination.equals(kCoord)) this.goTo(kCoord);
     }
 
     /**
@@ -167,25 +214,48 @@ public class Resident implements Comparable<Resident> {
     public void work() {
         Building at = residency.buildingAt(this.location);
         if (at instanceof Producer) {
+            this.status = Status.working;
             ((Producer)at).generate(this);
+            return;
         }
-        else if (at instanceof Storage) {
-            if (this.holding == null) return;
-            Storage here = (Storage)at;
-            if (this.holding.equals(here.getResource())) {
-                if (here.add(1) == 0) {
-                    this.holding = null;
-                    this.residency.increaseInventory(here.getResource());
+        if (at instanceof Kitchen) {
+            if (needsSoup() && !workingAtPatch()) {
+                if (this.residency.inventoryFor(Resource.Soup) > 0) {
+                    ((Kitchen)at).drink();
+                    this.hunger = 160;
+                    this.residency.increaseInventory(Resource.Soup, -1);
+                    this.goTo(returnDestination);
+                }
+                else {
+                    this.status = Status.waiting;
                 }
             }
-            if (returnDestination != null) this.goTo(returnDestination);
+            else {
+                storageStuff((Storage)at);
+            }
+            return;
         }
-        else if (at instanceof Home) {
+        if (at instanceof Storage) {
+            storageStuff((Storage)at);
+            return;
+        }
+        if (at instanceof Home) {
             this.status = Status.idle;
+            return;
         }
-        else {
-            this.status = Status.idle;
+        this.status = Status.idle;
+    }
+
+    private void storageStuff(Storage here) {
+        if (this.holding == null) return;
+
+        if (this.holding.equals(here.getResource())) {
+            if (here.add(1) == 0) {
+                this.holding = null;
+                this.residency.increaseInventory(here.getResource());
+            }
         }
+        if (returnDestination != null) this.goTo(returnDestination);
     }
 
     /**

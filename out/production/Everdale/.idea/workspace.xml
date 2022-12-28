@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Resident finishes storing Resource when interrupted">
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/images/kitchen.png" afterDir="false" />
+    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Patch now produces soup. More art added.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/graphical2d/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Background.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/graphical2d/Graphical2dClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Graphical2dClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/graphical2d/SpriteSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/SpriteSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Kitchen.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Kitchen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,14 +17,15 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="module-info" />
         <option value="package-info" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -61,8 +57,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="client" />
       <recent name="everdale" />
+      <recent name="client" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\sebas\OneDrive\Everdale\client\graphical2d\images" />
@@ -114,7 +110,7 @@
       <workItem from="1671928559110" duration="354000" />
       <workItem from="1671928921161" duration="2590000" />
       <workItem from="1671950857867" duration="5323000" />
-      <workItem from="1672095580025" duration="1992000" />
+      <workItem from="1672095580025" duration="11331000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Text-Based Functions.">
       <created>1671593317964</created>
@@ -207,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671963350224</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Patch now produces soup. More art added.">
+      <created>1672135999189</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1672135999189</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,10 +240,11 @@
     <MESSAGE value="Comments Everywhere!" />
     <MESSAGE value="Emergency fix! Loading fix, building map fix, give fix." />
     <MESSAGE value="Resident finishes storing Resource when interrupted" />
-    <option name="LAST_COMMIT_MESSAGE" value="Resident finishes storing Resource when interrupted" />
+    <MESSAGE value="Patch now produces soup. More art added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Patch now produces soup. More art added." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Everdale$EverdaleConsole.ic" NAME="EverdaleConsole Coverage Results" MODIFIED="1671930047033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Everdale$Everdale2dClient.ic" NAME="Everdale2dClient Coverage Results" MODIFIED="1671963036051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Everdale$Everdale2dClient.ic" NAME="Everdale2dClient Coverage Results" MODIFIED="1672135169498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

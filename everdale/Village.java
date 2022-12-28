@@ -18,6 +18,8 @@ public class Village {
      */
     public static final int Y_SIZE = 100;
 
+    public final Kitchen k;
+
     private Set<Coordinate> coords = new HashSet<>();
 
     private Map<Coordinate, Building> layout;
@@ -47,7 +49,7 @@ public class Village {
             }
         }
         // set up basic structures
-        Kitchen k = new Kitchen(this.getCoord(X_SIZE / 2, Y_SIZE / 2));
+        k = new Kitchen(this.getCoord(X_SIZE / 2, Y_SIZE / 2));
         this.build(this.getCoord(X_SIZE / 2, Y_SIZE / 2), k);
 
         this.build(this.getCoord(X_SIZE / 10, Y_SIZE / 10), new ClayPit(this.getCoord(X_SIZE / 10, Y_SIZE / 10)));
@@ -58,6 +60,7 @@ public class Village {
         this.build(this.getCoord(X_SIZE / 2, Y_SIZE - Y_SIZE / 10 - 1), new Evergrove(this.getCoord(X_SIZE / 2, Y_SIZE - Y_SIZE / 10 - 1)));
 
         this.build(this.getCoord(X_SIZE / 10, Y_SIZE - Y_SIZE / 10 - 1), new StoneMine(this.getCoord(X_SIZE / 10, Y_SIZE - Y_SIZE / 10 - 1)));
+        this.build(this.getCoord(X_SIZE - X_SIZE / 10 - 1, Y_SIZE / 10), new StoneMine(this.getCoord(X_SIZE - X_SIZE / 10 - 1, Y_SIZE / 10)));
 
         // First Home
         Coordinate houseCoord = this.getCoord(X_SIZE / 2, Y_SIZE / 2 + Y_SIZE / 10);
@@ -144,6 +147,10 @@ public class Village {
      */
     public void increaseInventory(Resource res) {
         increaseInventory(res, 1);
+    }
+
+    public int inventoryFor(Resource r) {
+        return this.inventory.get(r)[0];
     }
 
     /**
