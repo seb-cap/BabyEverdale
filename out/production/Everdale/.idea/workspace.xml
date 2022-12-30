@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Patch now produces soup. More art added.">
+    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Villager now goes to Kitchen for Soup when hungry.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/graphical2d/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Background.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/graphical2d/Graphical2dClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Graphical2dClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Resident.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Resident.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +116,9 @@
       <workItem from="1671928921161" duration="2590000" />
       <workItem from="1671950857867" duration="5323000" />
       <workItem from="1672095580025" duration="11331000" />
+      <workItem from="1672172662953" duration="12474000" />
+      <workItem from="1672299647006" duration="3575000" />
+      <workItem from="1672432744430" duration="860000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Text-Based Functions.">
       <created>1671593317964</created>
@@ -210,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672135999189</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Villager now goes to Kitchen for Soup when hungry.">
+      <created>1672256710788</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1672256710788</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +256,8 @@
     <MESSAGE value="Emergency fix! Loading fix, building map fix, give fix." />
     <MESSAGE value="Resident finishes storing Resource when interrupted" />
     <MESSAGE value="Patch now produces soup. More art added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Patch now produces soup. More art added." />
+    <MESSAGE value="Villager now goes to Kitchen for Soup when hungry." />
+    <option name="LAST_COMMIT_MESSAGE" value="Villager now goes to Kitchen for Soup when hungry." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Everdale$EverdaleConsole.ic" NAME="EverdaleConsole Coverage Results" MODIFIED="1671930047033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -7,6 +7,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * The Graphical2dClient class is a Client for Everdale<br>
@@ -17,6 +19,8 @@ public class Graphical2dClient extends JFrame implements Client {
 
     protected static Queue<everdale.Action> actions;
     protected static Graphical2dClient ex;
+
+    private static List<Text> text = new ArrayList<>();
 
     /**
      * Creates a new Graphical2dClient Object and initializes the UI.
@@ -45,14 +49,16 @@ public class Graphical2dClient extends JFrame implements Client {
 
 
     /**
-     * This method is a work in progress. TODO.
+     * Prints the given Object at the top left of the Screen
      * @param o The Object to be prompted
      */
     public void prompt(Object o) {
-        System.out.println(o);
+        text.add(new Text(o.toString()));
     }
 
-
+    public static List<Text> getText() {
+        return text;
+    }
 
     public static void main(String[] args) {
 

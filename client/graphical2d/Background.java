@@ -159,6 +159,20 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         for (Villager v : villagers) {
             drawImage(g, v.getImage(), v.getX(), v.getY(), 1, 1);
         }
+
+        // draw text
+        g.setColor(Color.white);
+        List<Text> text = Graphical2dClient.getText();
+        int drawn = 0;
+        for (int i = 0; i < text.size(); i++) {
+            if (text.get(i).toString() == null) {
+                text.remove(i);
+                i--;
+                continue;
+            }
+                g.drawString(text.get(i).toString(), 0, 10 * drawn + 10);
+                drawn++;
+        }
     }
 
     /**

@@ -119,12 +119,6 @@ public class Resident implements Comparable<Resident> {
      * work at the current coordinate. If the Resident is halted, nothing will happen.
      */
     public void walk() {
-        System.out.println(this.hunger + ", " +
-                this.residency.buildingAt(this.destination).toString() + ", " +
-                ((this.returnDestination != null) ?
-                this.residency.buildingAt(this.returnDestination).toString() :
-                "null" ) +
-                ", " + this.holding + ", " + this.status);
         if (halted) return;
 
         if (needsSoup() && !workingAtPatch()) {
@@ -158,6 +152,9 @@ public class Resident implements Comparable<Resident> {
 
     }
 
+    /**
+     * @return True if the Resident is working at a Patch, False if they are not.
+     */
     private boolean workingAtPatch() {
         return (this.residency.buildingAt(this.destination) instanceof Patch) ||
                 (this.returnDestination != null && this.residency.buildingAt(this.returnDestination) instanceof Patch);
