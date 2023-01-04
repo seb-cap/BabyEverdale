@@ -43,6 +43,7 @@ public abstract class Producer extends Building {
      */
     public boolean generate(Resident rFor) {
         if (this.level == 0 || rFor.getResidency().allStoragesFull(this.res)) {
+            Game.c.prompt(rFor.getName() + " is waiting for a " + this.res + " storage!", Client.Type.Warning);
             rFor.setStatus(Resident.Status.waiting);
             return false;
         }

@@ -1,30 +1,20 @@
 package everdale;
 
-import java.util.Set;
-
 /**
- * The Research class represents a research node in the research tree.
+ * The Research class contains the progress done towards a specific ResearchNode.
  */
 public class Research {
-    private int scrollsNeeded;
+
     private int scrollsDone;
-    private String name;
-    private String description;
-    private Set<Research> prereqs;
+    private final ResearchNode research;
 
     /**
      * Creates a new Research Object with the given parameters
-     * @param name The String name of the Research
-     * @param desc The String description of the Research
-     * @param scrolls The number of scrolls required to complete the Research
-     * @param prereqs The Set of Researches that must be completed prior to this one
+     * @param r The ResearchNode node this Research Object represents
      */
-    public Research(String name, String desc, int scrolls, Set<Research> prereqs) {
-        this.name = name;
-        this.description = desc;
-        this.scrollsNeeded = scrolls;
+    public Research(ResearchNode r) {
+        this.research = r;
         this.scrollsDone = 0;
-        this.prereqs = prereqs;
     }
 
     /**
@@ -34,21 +24,36 @@ public class Research {
      */
     public boolean addScrolls(int n) {
         this.scrollsDone += n;
-        return this.scrollsDone >= this.scrollsNeeded;
+        return this.scrollsDone >= this.research.scrollsNeeded;
     }
 
     /**
      * @return A String Representation of this Research: &lt;name&gt;
      */
     public String toString() {
-        return this.name;
+        return this.research.name;
+    }
+
+    public ResearchNode getResearch() {
+        return this.research;
+    }
+
+    public int getProgress() {
+        return this.scrollsDone;
     }
 
     /**
      * @return The Set of prerquisite Research as a String.
      */
     public String prereqsToString() {
-        return prereqs.toString();
+        return this.research.prereqs.toString();
+    }
+
+    public boolean equals(Object o) {
+        if (o instanceof Research) {
+            return this.research == ((Research)o).research;
+        }
+        return false;
     }
 }
 

@@ -57,7 +57,7 @@ public abstract class Storage extends Building {
      * @return True if the Storage is full, False if not.
      */
     public boolean isFull() {
-        return this.capacity - this.contains <= 0;
+        return this.capacity <= this.contains;
     }
 
     /**

@@ -5,19 +5,13 @@ package everdale;
  */
 public class Build implements Action {
     private Building b;
-    private int x;
-    private int y;
 
     /**
      * Creates a new Build Object to Construct a building at a coordinate
      * @param building The Building to build.
-     * @param x The X coordinate to build at
-     * @param y The Y coordinate to build at
      */
-    public Build(Building building, int x, int y) {
+    public Build(Building building) {
         this.b = building;
-        this.x = x;
-        this.y = y;
     }
 
     /**
@@ -25,19 +19,5 @@ public class Build implements Action {
      */
     public Building getB() {
         return b;
-    }
-
-    /**
-     * @return The X Coordinate of the Build Object
-     */
-    public int getX() {
-        return x;
-    }
-
-    /**
-     * @return The Y Coordinate of the Build Object
-     */
-    public int getY() {
-        return y;
     }
 }

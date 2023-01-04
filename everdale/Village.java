@@ -30,6 +30,9 @@ public class Village {
 
     private Set<Resident> residents;
 
+    private Map<Class<? extends Building>, Integer> buildables = new HashMap<>();
+    private Map<Class<? extends Building>, Integer> builtBuildables = new HashMap<>();
+
     private boolean initializing;
 
     /**
@@ -69,6 +72,14 @@ public class Village {
         r.setResidency(this);
         r.goTo(houseCoord);
         this.residents.add(r);
+
+        // Second Home
+        Coordinate house2Coord = this.getCoord(X_SIZE / 2 + X_SIZE / 10, Y_SIZE / 2 + Y_SIZE / 10);
+        this.build(house2Coord, new Home("Patrick", house2Coord));
+        Resident p = ((Home)this.buildingAt(house2Coord)).getResident();
+        p.setResidency(this);
+        p.goTo(house2Coord);
+        this.residents.add(p);
 
         this.build(this.getCoord(X_SIZE / 2, Y_SIZE / 2 - Y_SIZE / 10), new Patch(this.getCoord(X_SIZE / 2, Y_SIZE / 2 - Y_SIZE / 10)));
 
@@ -192,7 +203,14 @@ public class Village {
                 this.layout.put(this.getCoord(x, y), b);
             }
         }
-        if (!initializing) this.updateBuildingsMap();
+        if (!initializing) {
+            if (b instanceof Storage) {
+                this.storages.add((Storage)b);
+                this.updateInventoryMaxes();
+            }
+            this.updateBuildingsMap();
+            this.builtBuildables.put(b.getClass(), b.level);
+        }
         return true;
     }
 
@@ -337,5 +355,23 @@ public class Village {
             if (r.getName().equalsIgnoreCase(name)) return r;
         }
         return null;
+    }
+
+    public void updateBuildables(Set<ResearchNode> searched) {
+        for (ResearchNode rn : searched) {
+            Class<? extends Building> b = rn.building;
+            int level = rn.level;
+
+            if (b != null) {
+                if (!this.builtBuildables.containsKey(b)) this.buildables.put(b, level);
+            }
+        }
+    }
+
+    public Map<Class<? extends Building>, Integer> getBuildables() {
+        return this.buildables;
+    }
+    public List<Storage> getStorages() {
+        return this.storages;
     }
 }

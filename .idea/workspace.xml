@@ -4,14 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Villager now goes to Kitchen for Soup when hungry.">
-      <change afterPath="$PROJECT_DIR$/client/graphical2d/Text.java" afterDir="false" />
+    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Implemented Prompt for Graphical2dClient.">
+      <change afterPath="$PROJECT_DIR$/everdale/ResearchNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/console/EverdaleConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/console/EverdaleConsole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/graphical2d/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Background.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/graphical2d/Graphical2dClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Graphical2dClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/graphical2d/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Text.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Build.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Build.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Producer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Research.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Research.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/everdale/Resident.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Resident.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Storage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Study.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Study.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Village.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Village.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Build.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Build.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Research.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Research.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Study.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Study.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Village.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Village.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,10 +38,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Enum" />
         <option value="module-info" />
         <option value="package-info" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -119,7 +135,14 @@
       <workItem from="1672095580025" duration="11331000" />
       <workItem from="1672172662953" duration="12474000" />
       <workItem from="1672299647006" duration="3575000" />
-      <workItem from="1672432744430" duration="3193000" />
+      <workItem from="1672432744430" duration="3745000" />
+      <workItem from="1672476242691" duration="2992000" />
+      <workItem from="1672544772832" duration="3566000" />
+      <workItem from="1672690512658" duration="12616000" />
+      <workItem from="1672762890746" duration="2126000" />
+      <workItem from="1672767474644" duration="1830000" />
+      <workItem from="1672779669283" duration="4742000" />
+      <workItem from="1672798080975" duration="2901000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Text-Based Functions.">
       <created>1671593317964</created>
@@ -226,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672256710788</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Implemented Prompt for Graphical2dClient.">
+      <created>1672440835615</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1672440835615</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,10 +288,11 @@
     <MESSAGE value="Resident finishes storing Resource when interrupted" />
     <MESSAGE value="Patch now produces soup. More art added." />
     <MESSAGE value="Villager now goes to Kitchen for Soup when hungry." />
-    <option name="LAST_COMMIT_MESSAGE" value="Villager now goes to Kitchen for Soup when hungry." />
+    <MESSAGE value="Implemented Prompt for Graphical2dClient." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Prompt for Graphical2dClient." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Everdale$EverdaleConsole.ic" NAME="EverdaleConsole Coverage Results" MODIFIED="1671930047033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Everdale$Everdale2dClient.ic" NAME="Everdale2dClient Coverage Results" MODIFIED="1672135169498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Everdale$Everdale2dClient.ic" NAME="Everdale2dClient Coverage Results" MODIFIED="1672818839974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

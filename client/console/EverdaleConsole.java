@@ -23,6 +23,10 @@ public class EverdaleConsole implements Client {
         System.out.println(o);
     }
 
+    public void prompt(Object o, Type t) {
+        prompt(o);
+    }
+
     /**
      * Prints the Object to the console
      * @param o The Object to be prompted
@@ -57,7 +61,7 @@ public class EverdaleConsole implements Client {
                     promptS("Select Y");
                     int y = Integer.parseInt(console.nextLine());
 
-                    acs.add(new Build((Building)b.getDeclaredConstructor().newInstance(), x, y));
+                    acs.add(new Build((Building)b.getDeclaredConstructor(Coordinate.class).newInstance(new Coordinate(x, y))));
 
                 } catch (NumberFormatException e) {
                     promptS("Invalid Number.");

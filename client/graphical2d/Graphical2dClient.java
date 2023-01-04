@@ -51,12 +51,16 @@ public class Graphical2dClient extends JFrame implements Client {
     /**
      * Prints the given Object at the top left of the Screen
      * @param o The Object to be prompted
+     * @param t The Type of the Text
      */
-    public void prompt(Object o) {
-        text.add(new Text(o.toString()));
+    public void prompt(Object o, Client.Type t) {
+        text.add(new Text(o.toString(), t));
     }
 
-    public static List<Text> getText() {
+    /**
+     * @return The List of Text to display
+     */
+    protected static List<Text> getText() {
         return text;
     }
 

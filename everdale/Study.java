@@ -3,20 +3,28 @@ package everdale;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * The Study class represents the place where research takes place.
  * If a Resident is assigned to the Study, scrolls are produced.
  */
 public class Study extends Building {
-    private static final int MAX_LEVEL = 16;
-    private static List<Research> unsearched = initializeResearch();
-    private static List<Research> searched = new ArrayList<>();
-    private static Research current;
 
-    public static List<Research> viewableSearched = Collections.unmodifiableList(searched);
+    /**
+     * The number of ticks it takes to generate one Scroll
+     */
+    public static final int GENERATION_TIME = 1;
+
+    private static final int MAX_LEVEL = 16;
+    private static Set<ResearchNode> unsearched = initializeResearch();
+    private static Set<ResearchNode> searched = new HashSet<>();
+    private static Research current;
+    private static Map<ResearchNode, Research> inProgress = new HashMap<>();
+    private int generation;
 
     /**
      * Creates a new Study Object at the given Coordinate
@@ -31,8 +39,17 @@ public class Study extends Building {
      */
     public void research() {
         if (current == null) return;
+        if (generation < GENERATION_TIME) {
+            generation ++;
+            return;
+        }
         if (current.addScrolls(1)) {
-            Game.c.prompt(current + " research completed!");
+            searched.add(current.getResearch());
+            unsearched.remove(current.getResearch());
+            inProgress.remove(current.getResearch());
+            Game.c.prompt(current + " research completed!", Client.Type.Success);
+            current = null;
+            Game.home.updateBuildables(searched);
         }
     }
 
@@ -40,51 +57,43 @@ public class Study extends Building {
      * Initializes the Research tree by adding all Researches to a List
      * @return The List of all Researches in Everdale
      */
-    private static List<Research> initializeResearch() {
-        List<Research> all = new ArrayList<>();
-        // Wood Storage Level 2
-        String name = "Upgrade Wood Storage";
-        String desc = "Lets you increase the capacity of your wood storages.";
-        int scrolls = 1;
-        Set<Research> prereqs = new HashSet<>();
+    private static Set<ResearchNode> initializeResearch() {
+        Set<ResearchNode> all = new HashSet<>();
+        for (ResearchNode n : ResearchNode.values()) {
+            all.add(n);
+        }
 
-        Research wood_storage_upgrade1 = new Research(name, desc, scrolls, prereqs);
-
-        all.add(wood_storage_upgrade1);
-
-        // Village Kitchen Level 2
-        name = "Upgrade Village Kitchen";
-        desc = "Lets you increase the capacity of your village kitchen.";
-        scrolls = 1;
-        prereqs = new HashSet<>();
-        prereqs.add(wood_storage_upgrade1);
-
-        Research village_kitchen_upgrade1 = new Research(name, desc, scrolls, prereqs);
-
-        all.add(village_kitchen_upgrade1);
-
-        // Home Unlocked
-        name = "A new Home";
-        desc = "Lets you build a new Home for a new Villager.";
-        scrolls = 2;
-        prereqs = new HashSet<>();
-        prereqs.add(village_kitchen_upgrade1);
-
-        Research a_new_home1 = new Research(name, desc, scrolls, prereqs);
-
-        all.add(a_new_home1);
-
-        // TODO DELETE THIS TEMP
-        current = a_new_home1;
-		/*for (Research r : all) {
-			System.out.println(r.prereqsToString());
-		}*/
+        current = null;
 
         return all;
     }
 
+    public static void selectResearch(ResearchNode r) {
+        if (inProgress.containsKey(r)) {
+            current = inProgress.get(r);
+        }
+        else {
+            Research made = new Research(r);
+            inProgress.put(r, made);
+            unsearched.remove(made.getResearch());
+            current = made;
+        }
+    }
+
+    public static Set<ResearchNode> getAvailableResearches() {
+        Set<ResearchNode> rs = new HashSet<>();
+        for (ResearchNode r : unsearched) {
+            if (searched.containsAll(List.of(r.prereqs))) rs.add(r);
+        }
+        return rs;
+    }
+
+    public static Set<Research> getInProgressResearches() {
+        return new HashSet<>(inProgress.values());
+    }
+
     /**
-     * Levels up the Study. This unlocks
+     * Levels up the Study.
      */
     public void levelUp() {
         if (this.level < MAX_LEVEL) {

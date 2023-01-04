@@ -1,7 +1,7 @@
 package everdale;
 
 import java.awt.Color;
-import java.util.Map;
+import java.util.List;
 
 /**
  * The Resident class represents a worker from everdale. A resident can be
@@ -54,7 +54,7 @@ public class Resident implements Comparable<Resident> {
      */
     public Resident(String name, Home house) {
         this.name = name;
-        this.location = new Coordinate(0, 0);
+        this.location = new Coordinate(house.getCoord());
         this.home = house;
         this.status = Status.idle;
         this.halted = false;
@@ -95,7 +95,7 @@ public class Resident implements Comparable<Resident> {
      * @param c The Coordinate to go to.
      */
     public void dropOff(Coordinate c) {
-        this.returnDestination = new Coordinate(this.location);
+        if (this.returnDestination == null) this.returnDestination = new Coordinate(this.location);
         goTo(c);
     }
 
@@ -205,8 +205,8 @@ public class Resident implements Comparable<Resident> {
      * Building is at the location.<br>
      * When at a Producer, a Resource is attempted to be generated.<br>
      * When at a Storage and holding an item, the item is dropped off<br>
-     * When at a Home, the Resident becomes idle<br>
-     * When at an Empty, the Resident become idle
+     * Otherwise, the Resident become idle
+     *
      */
     public void work() {
         Building at = residency.buildingAt(this.location);
@@ -224,6 +224,12 @@ public class Resident implements Comparable<Resident> {
                     this.goTo(returnDestination);
                 }
                 else {
+                    if (anySoup()) {
+                        Game.c.prompt(this.name + " is waiting for Soup! (being produced)", Client.Type.Warning);
+                    }
+                    else {
+                        Game.c.prompt(this.name + " is waiting for Soup! (none producing!)", Client.Type.Notice);
+                    }
                     this.status = Status.waiting;
                 }
             }
@@ -236,13 +242,29 @@ public class Resident implements Comparable<Resident> {
             storageStuff((Storage)at);
             return;
         }
-        if (at instanceof Home) {
-            this.status = Status.idle;
-            return;
+        if (at instanceof Study) {
+            ((Study)at).research();
         }
+
+        // If at none of the above
         this.status = Status.idle;
     }
 
+    /**
+     * @return True if there is any Villager working at a Patch. False if not.
+     */
+    private boolean anySoup() {
+        for (Resident r : this.residency.getResidents()) {
+            if (r.workingAtPatch()) return true;
+        }
+        return false;
+    }
+
+    /**
+     * Places the held Item in the given Storage. If no Item is held,
+     * nothing happens.
+     * @param here The Storage to store the Item in.
+     */
     private void storageStuff(Storage here) {
         if (this.holding == null) return;
 
@@ -250,6 +272,9 @@ public class Resident implements Comparable<Resident> {
             if (here.add(1) == 0) {
                 this.holding = null;
                 this.residency.increaseInventory(here.getResource());
+            }
+            else {
+                this.store((Resource) this.holding);
             }
         }
         if (returnDestination != null) this.goTo(returnDestination);
@@ -323,11 +348,11 @@ public class Resident implements Comparable<Resident> {
     public <T extends Storage> void store(Resource r) {
         Class<? extends Storage> T = r.getResourceStorage();
         Coordinate destination = null;
-        Map<Building, Coordinate> buildings = this.getResidency().buildings();
-        for (Building b : buildings.keySet()) {
-            if ((T.isInstance(b)) && !((T) b).isFull()) {
+        List<Storage> storages = this.getResidency().getStorages();
+        for (Storage s : storages) {
+            if (!(s.isFull()) && T.isInstance(s)) {
                 this.give(r);
-                destination = buildings.get(b);
+                destination = new Coordinate(s.getCoord());
                 break;
             }
         }
@@ -335,6 +360,7 @@ public class Resident implements Comparable<Resident> {
             dropOff(destination);
         }
         else {
+            Game.c.prompt(this.name + " is waiting for a " + r + " storage!", Client.Type.Warning);
             this.status = Status.waiting;
         }
     }

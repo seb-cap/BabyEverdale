@@ -44,7 +44,8 @@ public class Game {
             switch (actions.remove().getClass().toString().substring(15)) {
                 case "Build":
                     Build buildAction = (Build)cur;
-                    home.build(home.getCoord(buildAction.getX(), buildAction.getY()), buildAction.getB());
+                    Building b = buildAction.getB();
+                    home.build(home.getCoord(b.getX(), b.getY()), b);
                     break;
                 case "View":
                     c.prompt(home.toString());

@@ -4,6 +4,8 @@ import everdale.*;
 import everdale.Action;
 
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,9 +18,12 @@ import java.awt.event.MouseListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.image.BufferedImage;
+import java.sql.Array;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.Map;
 
 
 /**
@@ -34,6 +39,7 @@ public class Background extends JPanel implements MouseListener, ActionListener 
     private Villager selectedVillager = null;
     private int currentViewX;
     private int currentViewY;
+    private Class<? extends Building> toBuild;
 
 
     /**
@@ -60,7 +66,8 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         this.buildings = Game.home.buildings().keySet();
 
         this.villagers = new ArrayList<>();
-        this.villagers.add(new Villager(Game.home.getResidents().iterator().next()));
+
+        this.updateVillagers();
 
         this.addKeyListener(new Keys(this));
 
@@ -68,6 +75,15 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         Timer timer = new Timer(DELAY, this);
         timer.start();
 
+    }
+
+    private void updateVillagers() {
+        if (Game.home.getResidents().size() == this.villagers.size()) return;
+
+        this.villagers.clear();
+        for (Resident r : Game.home.getResidents()) {
+            this.villagers.add(new Villager(r));
+        }
     }
 
     /**
@@ -161,10 +177,10 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         }
 
         // draw text
-        g.setColor(Color.white);
         List<Text> text = Graphical2dClient.getText();
         int drawn = 0;
         for (int i = 0; i < text.size(); i++) {
+            g.setColor(text.get(i).findColor());
             if (text.get(i).toString() == null) {
                 text.remove(i);
                 i--;
@@ -234,7 +250,24 @@ public class Background extends JPanel implements MouseListener, ActionListener 
      */
     private boolean clicked(int clickedX, int clickedY, int absoluteX, int absoluteY) {
         return absoluteX - this.currentViewX / 10 == clickedX && absoluteY - this.currentViewY / 10 == clickedY;
+    }
 
+    /**
+     * Determines whether a coordinate has been clicked within a radius of 2 units. Specifically made
+     * to click Villagers
+     * @param clickedX The x coordinate clicked.
+     * @param clickedY The y coordinate clicked.
+     * @param absoluteX The true x coordinate being checked.
+     * @param absoluteY The true y coordinate being checked.
+     * @return True if the coordinates align, false otherwise.
+     */
+    private boolean villagerClicked(int clickedX, int clickedY, int absoluteX, int absoluteY) {
+        for (int i = -2; i <= 2; i++) {
+            for (int j = -2; j <= 2; j++) {
+                if (clicked(clickedX + i, clickedY + j, absoluteX, absoluteY)) return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -250,6 +283,24 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         int y = e.getY() / 10;
         if (mouseButton == MouseEvent.BUTTON1) {
             if (adjustedX(x) > Village.X_SIZE - 1 || adjustedY(y) > Village.Y_SIZE - 1) return;
+
+            if (this.toBuild != null) {
+                try {
+                    Graphical2dClient.actions.add(
+                        new Build(
+                                this.toBuild.getDeclaredConstructor(Coordinate.class).newInstance(
+                                        new Coordinate(x, y)
+                                )
+                        )
+                    );
+                    this.toBuild = null;
+                }
+                catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                return;
+            }
+
             if (this.selectedVillager != null) {
                 Graphical2dClient.actions.add(
                         new Command(this.selectedVillager.asResident(),
@@ -258,17 +309,55 @@ public class Background extends JPanel implements MouseListener, ActionListener 
                 );
             }
 
+            this.selectedVillager = null;
             for (Villager v : this.villagers) {
-                this.selectedVillager = null;
                 v.deselect();
-                if (clicked(x, y, v.getX(), v.getY())) {
+                if (villagerClicked(x, y, v.getX(), v.getY())) {
                     this.selectedVillager = v;
                     v.select();
                 }
             }
         }
         else if (mouseButton == MouseEvent.BUTTON3) {
-            Graphical2dClient.ex.prompt(Game.home.buildingAt(adjustedX(x), adjustedY(y)));
+            Building here = Game.home.buildingAt(adjustedX(x), adjustedY(y));
+            Graphical2dClient.ex.prompt(here);
+
+            if (here instanceof Study) {
+                Set<ResearchNode> available = Study.getAvailableResearches();
+                Set<Research> progress = Study.getInProgressResearches();
+
+                String[] researches; // String Representations
+                List<ResearchNode> availableResearches = new ArrayList<>();
+
+                if (available.size() != 0 || progress.size() != 0) {
+                    researches = new String[available.size() + progress.size()];
+                    int i = 0;
+                    for (ResearchNode rn : available) {
+                        researches[i] = rn.name;
+                        availableResearches.add(rn);
+                        i++;
+                    }
+                    for (Research r : progress) {
+                        researches[i] = r.toString() + " (" + r.getProgress() + "/" + r.getResearch().scrollsNeeded + ")";
+                        availableResearches.add(r.getResearch());
+                        i++;
+                    }
+                }
+                else {
+                    researches = new String[]{"No Research Available!"};
+                }
+
+                String s = (String)JOptionPane.showInputDialog(
+                        this,
+                        "Select a Research",
+                        "Study",
+                        JOptionPane.PLAIN_MESSAGE,
+                        new ImageIcon(SpriteSheet.STUDY_SPRITES[0]),
+                        researches,
+                        researches[0]);
+
+                if (s != null && !s.equals("No Research Available!")) Study.selectResearch(availableResearches.get(Arrays.asList(researches).indexOf(s)));
+            }
         }
     }
 
@@ -361,9 +450,40 @@ public class Background extends JPanel implements MouseListener, ActionListener 
                 case KeyEvent.VK_LEFT, KeyEvent.VK_A -> b.moveLeft();
                 case KeyEvent.VK_DOWN, KeyEvent.VK_S -> b.moveDown();
                 case KeyEvent.VK_UP, KeyEvent.VK_W -> b.moveUp();
-
+                case KeyEvent.VK_B -> b.build();
             }
         }
+    }
+
+    private void build() {
+        Map<Class<? extends Building>, Integer> buildables = Game.home.getBuildables();
+        String[] buildablesString = new String[buildables.keySet().size()];
+        List<Class<? extends Building>> buildablesSet = new ArrayList<>();
+
+        if (buildablesString.length > 0) {
+            int i = 0;
+            for (Class<? extends Building> c : buildables.keySet()) {
+                buildablesString[i] = c.getName() + " (Level " + buildables.get(c) + ")";
+                buildablesSet.add(c);
+                i++;
+            }
+        }
+        else {
+            buildablesString = new String[]{"Research to Unlock more Buildings!"};
+        }
+
+        String s = (String)JOptionPane.showInputDialog(
+                this,
+                "Select a Building",
+                "Build",
+                JOptionPane.PLAIN_MESSAGE,
+                new ImageIcon(SpriteSheet.BUILD_CART_SPRITES[0]),
+                buildablesString,
+                buildablesString[0]);
+
+        if (s == null || s.equals("Research to Unlock more Buildings!")) return;
+
+        this.toBuild = buildablesSet.get(Arrays.asList(buildablesString).indexOf(s));
     }
 
     // Unused Methods from MouseListener.
