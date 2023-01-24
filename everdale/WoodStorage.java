@@ -6,6 +6,9 @@ package everdale;
  */
 public class WoodStorage extends Storage {
 
+    public static int built = 1;
+    public static int max = 1;
+
     /**
      * The amount of storage for each level of the WoodStorage. index = level.
      */
@@ -32,6 +35,7 @@ public class WoodStorage extends Storage {
         if (this.level < MAX_LEVEL) {
             this.level++;
             this.capacity = WOOD_STORAGE_LEVELS[this.level];
+            Game.c.prompt(this.getClass().getSimpleName() + " construction success!", Client.Type.Success);
         }
         Game.home.updateInventoryMaxes();
     }

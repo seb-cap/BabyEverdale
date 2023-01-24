@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Everdale:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Implemented Prompt for Graphical2dClient.">
-      <change afterPath="$PROJECT_DIR$/everdale/ResearchNode.java" afterDir="false" />
+    <list default="true" id="e45d0fd1-6455-48d1-96ab-d54318f93656" name="Changes" comment="Huge update: Research, Multiple Villagers, Building. Research still needs work for new Buildings but that is next.">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Everdale_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/console/EverdaleConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/console/EverdaleConsole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/graphical2d/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Background.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/graphical2d/Graphical2dClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Graphical2dClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/graphical2d/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphical2d/Text.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Build.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Build.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Building.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/ClayStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/ClayStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/everdale/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/everdale/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/Kitchen.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Kitchen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/everdale/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Producer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/everdale/Research.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Research.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/ResearchNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/ResearchNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/everdale/Resident.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Resident.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/StoneStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/StoneStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/everdale/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Storage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/everdale/Study.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Study.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/everdale/Village.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/Village.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/everdale/WoodStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/everdale/WoodStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Build.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Build.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Building.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Building.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Client.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Research.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Research.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Resident.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Home.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Home.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Kitchen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Kitchen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Producer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Producer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Storage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Storage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Study.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Study.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/Village.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/Village.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Everdale/everdale/WoodStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Everdale/everdale/WoodStorage.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,14 +77,18 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-19&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sebas/Downloads/characters.png&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sebas/OneDrive/Everdale/out/artifacts/Everdale_jar/Everdale.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -105,9 +121,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Everdale2d" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Everdale_jar/Everdale.jar" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\sebas\OneDrive\Everdale" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Everdale:jar" />
+        </option>
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.EverdaleConsole" />
       <item itemvalue="Application.Everdale2dClient" />
+      <item itemvalue="JAR Application.Everdale2d" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -142,7 +169,19 @@
       <workItem from="1672762890746" duration="2126000" />
       <workItem from="1672767474644" duration="1830000" />
       <workItem from="1672779669283" duration="4742000" />
-      <workItem from="1672798080975" duration="2901000" />
+      <workItem from="1672798080975" duration="3303000" />
+      <workItem from="1672969311966" duration="296000" />
+      <workItem from="1673297543745" duration="99000" />
+      <workItem from="1673475749505" duration="255000" />
+      <workItem from="1673485533465" duration="4829000" />
+      <workItem from="1673977653552" duration="5870000" />
+      <workItem from="1674179942328" duration="1552000" />
+      <workItem from="1674509053647" duration="485000" />
+      <workItem from="1674543194865" duration="631000" />
+      <workItem from="1674543876728" duration="762000" />
+      <workItem from="1674545221735" duration="52000" />
+      <workItem from="1674545474306" duration="3336000" />
+      <workItem from="1674596588334" duration="3367000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Text-Based Functions.">
       <created>1671593317964</created>
@@ -256,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672440835615</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Huge update: Research, Multiple Villagers, Building. Research still needs work for new Buildings but that is next.">
+      <created>1672820470213</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1672820470213</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,7 +335,8 @@
     <MESSAGE value="Patch now produces soup. More art added." />
     <MESSAGE value="Villager now goes to Kitchen for Soup when hungry." />
     <MESSAGE value="Implemented Prompt for Graphical2dClient." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Prompt for Graphical2dClient." />
+    <MESSAGE value="Huge update: Research, Multiple Villagers, Building. Research still needs work for new Buildings but that is next." />
+    <option name="LAST_COMMIT_MESSAGE" value="Huge update: Research, Multiple Villagers, Building. Research still needs work for new Buildings but that is next." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Everdale$EverdaleConsole.ic" NAME="EverdaleConsole Coverage Results" MODIFIED="1671930047033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

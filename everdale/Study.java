@@ -1,12 +1,7 @@
 package everdale;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.lang.reflect.Field;
+import java.util.*;
 
 /**
  * The Study class represents the place where research takes place.
@@ -36,6 +31,7 @@ public class Study extends Building {
 
     /**
      * Adds one Scroll to the current Research
+     * If the research is finished, prompt and update all states.
      */
     public void research() {
         if (current == null) return;
@@ -44,6 +40,7 @@ public class Study extends Building {
             return;
         }
         if (current.addScrolls(1)) {
+            if (current.getResearch().newBuilding) incrementCounter();
             searched.add(current.getResearch());
             unsearched.remove(current.getResearch());
             inProgress.remove(current.getResearch());
@@ -58,10 +55,7 @@ public class Study extends Building {
      * @return The List of all Researches in Everdale
      */
     private static Set<ResearchNode> initializeResearch() {
-        Set<ResearchNode> all = new HashSet<>();
-        for (ResearchNode n : ResearchNode.values()) {
-            all.add(n);
-        }
+        Set<ResearchNode> all = new HashSet<>(Arrays.asList(ResearchNode.values()));
 
         current = null;
 
@@ -98,8 +92,19 @@ public class Study extends Building {
     public void levelUp() {
         if (this.level < MAX_LEVEL) {
             this.level++;
+            Game.c.prompt(this.getClass().getSimpleName() + " construction success!", Client.Type.Success);
         }
         // TODO
+    }
+
+    private void incrementCounter() {
+        // TODO
+        try {
+            Field max = current.getResearch().building.getDeclaredField("max");
+            max.set(null, max.getInt(null) + 1);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

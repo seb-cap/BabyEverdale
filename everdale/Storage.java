@@ -107,7 +107,7 @@ public abstract class Storage extends Building {
      * @return A String representation of the Storage: &lt;Resource&gt; Storage: &lt;contained&gt;/&lt;capacity&gt;
      */
     public String toString() {
-        return this.getResource() + " Storage: " + this.contains + "/" + this.capacity;
+        return this.getResource() + " Storage level " + this.level + ": " + this.contains + "/" + this.capacity;
     }
 
 }

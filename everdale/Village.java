@@ -31,7 +31,6 @@ public class Village {
     private Set<Resident> residents;
 
     private Map<Class<? extends Building>, Integer> buildables = new HashMap<>();
-    private Map<Class<? extends Building>, Integer> builtBuildables = new HashMap<>();
 
     private boolean initializing;
 
@@ -67,7 +66,7 @@ public class Village {
 
         // First Home
         Coordinate houseCoord = this.getCoord(X_SIZE / 2, Y_SIZE / 2 + Y_SIZE / 10);
-        this.build(houseCoord, new Home(houseCoord));
+        this.build(houseCoord, new Home("Carolina", houseCoord));
         Resident r = ((Home)this.buildingAt(houseCoord)).getResident();
         r.setResidency(this);
         r.goTo(houseCoord);
@@ -75,7 +74,7 @@ public class Village {
 
         // Second Home
         Coordinate house2Coord = this.getCoord(X_SIZE / 2 + X_SIZE / 10, Y_SIZE / 2 + Y_SIZE / 10);
-        this.build(house2Coord, new Home("Patrick", house2Coord));
+        this.build(house2Coord, new Home(house2Coord));
         Resident p = ((Home)this.buildingAt(house2Coord)).getResident();
         p.setResidency(this);
         p.goTo(house2Coord);
@@ -192,7 +191,20 @@ public class Village {
      * @return True if the Building was build, False if not.
      */
     public boolean build(Coordinate c, Building b) {
-        if (!allEmpty(c, b))  return false;
+        if (!allEmpty(c, b)) {
+            if (!initializing) Game.c.prompt("Invalid location!", Client.Type.Notice);
+            return false;
+        }
+
+        try {
+            if (!initializing &&
+                    b.getClass().getField("built").getInt(null) >= b.getClass().getField("max").getInt(null)) {
+                Game.c.prompt("No more " + b.getClass().getSimpleName() + " available!", Client.Type.Notice);
+                return false;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         for (int x = b.getStartVal(c.getX(), b.getSizeX());
              x < b.getStartVal(c.getX(), b.getSizeX()) + b.getSizeX();
@@ -205,11 +217,21 @@ public class Village {
         }
         if (!initializing) {
             if (b instanceof Storage) {
-                this.storages.add((Storage)b);
+                this.storages.add((Storage) b);
                 this.updateInventoryMaxes();
             }
             this.updateBuildingsMap();
-            this.builtBuildables.put(b.getClass(), b.level);
+            if (b instanceof Home) {
+                Resident r = ((Home) b).getResident();
+                r.setResidency(this);
+                r.goTo(b.getCoord());
+                this.residents.add(r);
+            }
+            try {
+                b.getClass().getField("built").setInt(null, b.getClass().getField("built").getInt(null) + 1);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return true;
     }
@@ -357,17 +379,25 @@ public class Village {
         return null;
     }
 
+    /**
+     * Updateds the buildables map according to the given research
+     * @param searched The searched research.
+     */
     public void updateBuildables(Set<ResearchNode> searched) {
         for (ResearchNode rn : searched) {
             Class<? extends Building> b = rn.building;
             int level = rn.level;
 
             if (b != null) {
-                if (!this.builtBuildables.containsKey(b)) this.buildables.put(b, level);
+                this.buildables.put(b, level);
             }
         }
     }
 
+    /**
+     * Gets the Buildables Map. The Keys are the classes of the Buildables. The values are the level for that Building.
+     * @return The Buildables map.
+     */
     public Map<Class<? extends Building>, Integer> getBuildables() {
         return this.buildables;
     }

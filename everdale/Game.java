@@ -6,12 +6,12 @@ import java.util.Queue;
  * The Game class contains the main logic for playing Everdale. It handles a Queue of Actions
  * and carries them out in order.
  */
-public class Game {
+public final class Game {
 
     /**
      * The Client for the Game
      */
-    protected static Client c;
+    public static Client c;
     /**
      * The home Village
      */
@@ -41,7 +41,7 @@ public class Game {
 
         while (!actions.isEmpty()) {
             Action cur = actions.peek();
-            switch (actions.remove().getClass().toString().substring(15)) {
+            switch (actions.remove().getClass().getSimpleName()) {
                 case "Build":
                     Build buildAction = (Build)cur;
                     Building b = buildAction.getB();

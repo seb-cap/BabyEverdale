@@ -6,7 +6,7 @@ import java.util.*;
  * The Kitchen class represents the place where all Food is stored
  * and can be converted into Soup
  */
-public class Kitchen extends Storage { //TODO
+public class Kitchen extends Storage {
 
     public static final int[] KITCHEN_SOUP_STORAGE_LEVELS = {0, 5, 10, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200};
     public static final int MAX_LEVEL = 12;
@@ -42,6 +42,7 @@ public class Kitchen extends Storage { //TODO
         if (this.level < MAX_LEVEL) {
             this.level++;
             this.capacity = KITCHEN_SOUP_STORAGE_LEVELS[this.level];
+            Game.c.prompt(this.getClass().getSimpleName() + " construction success!", Client.Type.Success);
         }
     }
 }

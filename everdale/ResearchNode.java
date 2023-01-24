@@ -23,7 +23,7 @@ public enum ResearchNode {
     public final Class<? extends Building> building;
     public final int level;
     public final Item item;
-    public boolean newBuilding;
+    public final boolean newBuilding;
 
     private ResearchNode(String name, String description, int scrollsNeeded, int studyLevel, Class<? extends Building> b, int level, ResearchNode... prereqs) {
         this.name = name;
@@ -46,7 +46,7 @@ public enum ResearchNode {
         this.item = item;
         this.building = null;
         this.newBuilding = false;
-        this.level = 0;
+        this.level = 1;
     }
 
     private ResearchNode(String name, String description, int scrollsNeeded, int studyLevel, Class<? extends Building> b, ResearchNode... prereqs) {
@@ -56,7 +56,7 @@ public enum ResearchNode {
         this.prereqs = prereqs;
         this.studyLevel = studyLevel;
         this.building = b;
-        this.level = 0;
+        this.level = 1;
         this.newBuilding = true;
         this.item = null;
     }

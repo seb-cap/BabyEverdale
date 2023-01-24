@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Everdale:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Everdale_jar</output-path>
+    <root id="archive" name="Everdale.jar">
+      <element id="module-output" name="Everdale" />
+    </root>
+  </artifact>
+</component>

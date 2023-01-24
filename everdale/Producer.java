@@ -42,7 +42,12 @@ public abstract class Producer extends Building {
      * @return True if a Resource was generated, False if it was not.
      */
     public boolean generate(Resident rFor) {
-        if (this.level == 0 || rFor.getResidency().allStoragesFull(this.res)) {
+        if (this.level == 0) {
+            Game.c.prompt(rFor.getName() + ": Producer is not yet Built.", Client.Type.Information);
+            rFor.setStatus(Resident.Status.waiting);
+            return false;
+        }
+        if (rFor.getResidency().allStoragesFull(this.res)) {
             Game.c.prompt(rFor.getName() + " is waiting for a " + this.res + " storage!", Client.Type.Warning);
             rFor.setStatus(Resident.Status.waiting);
             return false;

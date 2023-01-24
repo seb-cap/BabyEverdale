@@ -8,9 +8,21 @@ package everdale;
 public interface Client {
 
     public enum Type {
+        /**
+         * Basic Information from the Game. Low Priority.
+         */
         Information,
+        /**
+         * A warning from the game. Middle Priority.
+         */
         Warning,
+        /**
+         * An important notice from the game. High Priority.
+         */
         Notice,
+        /**
+         * A notice of success from the game (finished research, building, etc.).
+         */
         Success
     }
 

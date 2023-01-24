@@ -76,6 +76,7 @@ public class Resident implements Comparable<Resident> {
 
         // After Storing Item, go to the place
         if (nextDestination != null) {
+            this.returnDestination = null;
             this.destination = new Coordinate(nextDestination);
             this.nextDestination = null;
             return;

@@ -2,6 +2,7 @@ package client.graphical2d;
 
 import everdale.*;
 import everdale.Action;
+import everdale.Client.Type;
 
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
@@ -18,7 +19,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.image.BufferedImage;
-import java.sql.Array;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,9 @@ import java.util.Map;
  * The Background class is a JPanel that represents the background
  * of the Everdale game. This holds the information for moving the view
  * and logic for drawing sprites.
+ * <br>
+ * Over time, this class has evolved to be the main logic of the graphical2d package.
+ * The Background class handles all mouse presses and keystrokes.
  */
 public class Background extends JPanel implements MouseListener, ActionListener {
 
@@ -40,6 +43,8 @@ public class Background extends JPanel implements MouseListener, ActionListener 
     private int currentViewX;
     private int currentViewY;
     private Class<? extends Building> toBuild;
+    private int toBuildLevel;
+    private boolean buildingBuilt = false;
 
 
     /**
@@ -155,18 +160,18 @@ public class Background extends JPanel implements MouseListener, ActionListener 
                 continue;
             }
             if (b instanceof Kitchen) {
-                drawImage(g, SpriteSheet.KITCHEN_SPRITES[b.getLevel()], b);
+                drawImage(g, SpriteSheet.KITCHEN_SPRITES[b.getLevel()-1], b);
                 continue;
             }
             if (b instanceof Home) {
-                drawImage(g, SpriteSheet.HOME_SPRITES[b.getLevel()], b);
+                drawImage(g, SpriteSheet.HOME_SPRITES[b.getLevel()-1], b);
                 continue;
             }
             if (b instanceof Gate) {
                 drawImage(g, SpriteSheet.GATE_SPRITE, b);
             }
             if (b instanceof Study) {
-                drawImage(g, SpriteSheet.STUDY_SPRITES[b.getLevel()], b);
+                drawImage(g, SpriteSheet.STUDY_SPRITES[b.getLevel()-1], b);
             }
             if (b instanceof Patch) {
                 drawImage(g, SpriteSheet.PATCH_SPRITE, b);
@@ -284,16 +289,33 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         if (mouseButton == MouseEvent.BUTTON1) {
             if (adjustedX(x) > Village.X_SIZE - 1 || adjustedY(y) > Village.Y_SIZE - 1) return;
 
+            // Build a building
             if (this.toBuild != null) {
                 try {
-                    Graphical2dClient.actions.add(
-                        new Build(
-                                this.toBuild.getDeclaredConstructor(Coordinate.class).newInstance(
-                                        new Coordinate(x, y)
+                    // If it's a new building, build.
+                    if (this.toBuildLevel == 1) {
+                        Graphical2dClient.actions.add(
+                                new Build(
+                                        this.toBuild.getDeclaredConstructor(Coordinate.class).newInstance(
+                                                new Coordinate(x, y)
+                                        )
                                 )
-                        )
-                    );
+                        );
+                        buildingBuilt = true;
+                    }
+                    // Otherwise, level up the clicked place
+                    else {
+                        Building here = Game.home.buildingAt(adjustedX(x), adjustedY(y));
+                        if (this.toBuild.isInstance(here)) {
+                            if (this.toBuildLevel == here.getLevel() + 1) here.levelUp(); // TODO send villager to construct
+                            else Graphical2dClient.ex.prompt("Invalid Upgrade Level!", Type.Notice);
+                        }
+                        else {
+                            Graphical2dClient.ex.prompt("Invalid Upgrade Location!", Type.Notice);
+                        }
+                    }
                     this.toBuild = null;
+                    this.toBuildLevel = 0;
                 }
                 catch (Exception ex) {
                     ex.printStackTrace();
@@ -301,6 +323,7 @@ public class Background extends JPanel implements MouseListener, ActionListener 
                 return;
             }
 
+            // Otherwise, Command the Villager
             if (this.selectedVillager != null) {
                 Graphical2dClient.actions.add(
                         new Command(this.selectedVillager.asResident(),
@@ -309,6 +332,7 @@ public class Background extends JPanel implements MouseListener, ActionListener 
                 );
             }
 
+            // Select new Villager
             this.selectedVillager = null;
             for (Villager v : this.villagers) {
                 v.deselect();
@@ -393,6 +417,10 @@ public class Background extends JPanel implements MouseListener, ActionListener 
 
         Graphical2dClient.actions.add(Action.PASS);
         Game.play(Graphical2dClient.actions);
+        if (buildingBuilt) {
+            this.updateVillagers();
+            buildingBuilt = false;
+        }
         repaint();
     }
 
@@ -455,6 +483,11 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         }
     }
 
+    /**
+     * Handles the UI and logic for building after pressing the Build button.
+     * Will prompt the user to select a building or upgrade from the available list.
+     * This will update the toBuild and toBuildLevel fields for the next click.
+     */
     private void build() {
         Map<Class<? extends Building>, Integer> buildables = Game.home.getBuildables();
         String[] buildablesString = new String[buildables.keySet().size()];
@@ -463,7 +496,7 @@ public class Background extends JPanel implements MouseListener, ActionListener 
         if (buildablesString.length > 0) {
             int i = 0;
             for (Class<? extends Building> c : buildables.keySet()) {
-                buildablesString[i] = c.getName() + " (Level " + buildables.get(c) + ")";
+                buildablesString[i] = c.getSimpleName() + " (Level " + buildables.get(c) + ")";
                 buildablesSet.add(c);
                 i++;
             }
@@ -483,7 +516,10 @@ public class Background extends JPanel implements MouseListener, ActionListener 
 
         if (s == null || s.equals("Research to Unlock more Buildings!")) return;
 
-        this.toBuild = buildablesSet.get(Arrays.asList(buildablesString).indexOf(s));
+        Class<? extends Building> b = buildablesSet.get(Arrays.asList(buildablesString).indexOf(s));
+
+        this.toBuild = b;
+        this.toBuildLevel = buildables.get(b);
     }
 
     // Unused Methods from MouseListener.

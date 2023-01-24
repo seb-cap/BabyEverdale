@@ -31,6 +31,7 @@ public class ClayStorage extends Storage {
         if (this.level < MAX_LEVEL) {
             this.level++;
             this.capacity = CLAY_STORAGE_LEVELS[this.level];
+            Game.c.prompt(this.getClass().getSimpleName() + " construction success!", Client.Type.Success);
         }
         Game.home.updateInventoryMaxes();
     }

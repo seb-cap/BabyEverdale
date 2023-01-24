@@ -57,7 +57,6 @@ public abstract class Building {
         return sizeY;
     }
 
-
     /**
      * @return The Coordinate of this Building
      */
@@ -100,7 +99,11 @@ public abstract class Building {
      * @return A String representation of the Building: The name of the Class by default.
      */
     public String toString() {
-        String name = this.getClass().getName();
-        return (name.substring(0, 9).equals("everdale.") ? name.substring(9) : name);
+        String name = this.getClass().getSimpleName();
+        return name + " Level " + this.level;
+    }
+
+    public void levelUp() {
+        Game.c.prompt("This cannot be upgraded!", Client.Type.Notice);
     }
 }

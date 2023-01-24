@@ -1,11 +1,18 @@
 package everdale;
 
 import java.awt.Color;
+import java.util.Random;
 
 /**
  * The Home class represents a house for an Everdale Resident
  */
 public class Home extends Building {
+
+    public static final String[] NAMES = new String[]{"Azalea", "Blossom", "Clementine", "Dahlia", "Hazel", "Iris", "Ivy", "Juniper", "Lily", "Magnolia", "Olive", "Poppy", "Sage", "Violet", "Willow"};
+
+    public static int built = 2;
+    public static int max = 2;
+
     private Resident owner;
     private Color color;
 
@@ -16,7 +23,7 @@ public class Home extends Building {
      * @param c The Coordinate of the Home
      */
     public Home(Coordinate c) {
-        this("Carolina", c);
+        this(NAMES[new Random().nextInt(NAMES.length)], c);
     }
 
     /**
@@ -43,7 +50,15 @@ public class Home extends Building {
      * &lt;first letter of owner's name&gt;'s Home.
      */
     public String toString() {
-        return owner.getName().charAt(0) + "'s Home.";
+        return owner.getName() + "'s Home. Level " + this.level;
+    }
+
+    public int built() {
+        return built;
+    }
+
+    public int max() {
+        return max;
     }
 }
 
