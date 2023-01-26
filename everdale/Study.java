@@ -77,7 +77,7 @@ public class Study extends Building {
     public static Set<ResearchNode> getAvailableResearches() {
         Set<ResearchNode> rs = new HashSet<>();
         for (ResearchNode r : unsearched) {
-            if (searched.containsAll(List.of(r.prereqs))) rs.add(r);
+            if (searched.containsAll(List.of(r.prereqs)) && Game.home.s.level >= r.studyLevel) rs.add(r);
         }
         return rs;
     }

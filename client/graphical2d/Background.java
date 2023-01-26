@@ -194,6 +194,9 @@ public class Background extends JPanel implements MouseListener, ActionListener 
                 g.drawString(text.get(i).toString(), 0, 10 * drawn + 10);
                 drawn++;
         }
+        g.setColor(Color.white);
+        g.drawString("Village level " + Game.home.getVillageLevel() + " (" + Game.home.getVillageXP() + "/" +
+                Game.home.getNeededXP() + ")", Graphical2dClient.ex.getWidth() - 150, 10);
     }
 
     /**
@@ -307,7 +310,11 @@ public class Background extends JPanel implements MouseListener, ActionListener 
                     else {
                         Building here = Game.home.buildingAt(adjustedX(x), adjustedY(y));
                         if (this.toBuild.isInstance(here)) {
-                            if (this.toBuildLevel == here.getLevel() + 1) here.levelUp(); // TODO send villager to construct
+                            if (this.toBuildLevel == here.getLevel() + 1) {
+                                // TODO send villager to construct
+                                here.levelUp();
+                                Game.home.xpUp();
+                            }
                             else Graphical2dClient.ex.prompt("Invalid Upgrade Level!", Type.Notice);
                         }
                         else {

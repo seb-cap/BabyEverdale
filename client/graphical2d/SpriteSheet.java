@@ -23,7 +23,7 @@ public class SpriteSheet {
     public static final BufferedImage[] EVERGROVE_SPRITES = getSprites("client/graphical2d/images/evergrove.png", 2, 1);
     public static final BufferedImage[] STONE_MINE_SPRITES = getSprites("client/graphical2d/images/stone_mine.png", 2, 1);
     public static final BufferedImage[] CLAY_PIT_SPRITES = getSprites("client/graphical2d/images/clay_pit.png", 2, 1);
-    // Storages
+    // Storages TODO add the rest
     public static final BufferedImage[] WOOD_STORAGE_SPRITES = getSprites("client/graphical2d/images/wood_storage.png", 12, 3);
     public static final BufferedImage[] KITCHEN_SPRITES = getSprites("client/graphical2d/images/kitchen.png", 12, 1);
     // Carts

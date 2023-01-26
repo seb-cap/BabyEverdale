@@ -8,7 +8,8 @@ public enum ResearchNode {
 
     WoodStorageUpgrade2("Upgrade Wood Storage", "Lets you increase the capacity of your wood storages.", 1, 1, WoodStorage.class, 2),
     KitchenUpgrade2("Upgrade Village Kitchen", "Lets you increase the capacity of your village kitchen.", 1, 1, Kitchen.class, 2, WoodStorageUpgrade2),
-    Home3("A new Home", "Lets you build a new Home for a new Villager.", 2, 1, Home.class, KitchenUpgrade2),
+    Home3("A new Home", "Lets you build a new Home for a new Villager.", 2, 2, Home.class, KitchenUpgrade2),
+    ClayStorage1("Clay Digging", "Lets you dig clay and store it.", 3, 2, ClayStorage.class, Home3),
     // TODO
     ;
 
@@ -25,7 +26,7 @@ public enum ResearchNode {
     public final Item item;
     public final boolean newBuilding;
 
-    private ResearchNode(String name, String description, int scrollsNeeded, int studyLevel, Class<? extends Building> b, int level, ResearchNode... prereqs) {
+    ResearchNode(String name, String description, int scrollsNeeded, int studyLevel, Class<? extends Building> b, int level, ResearchNode... prereqs) {
         this.name = name;
         this.description = description;
         this.scrollsNeeded = scrollsNeeded;
@@ -37,7 +38,7 @@ public enum ResearchNode {
         this.item = null;
     }
 
-    private ResearchNode(String name, String description, int scrollsNeeded, int studyLevel, Item item, ResearchNode... prereqs) {
+    ResearchNode(String name, String description, int scrollsNeeded, int studyLevel, Item item, ResearchNode... prereqs) {
         this.name = name;
         this.description = description;
         this.scrollsNeeded = scrollsNeeded;
@@ -49,7 +50,7 @@ public enum ResearchNode {
         this.level = 1;
     }
 
-    private ResearchNode(String name, String description, int scrollsNeeded, int studyLevel, Class<? extends Building> b, ResearchNode... prereqs) {
+    ResearchNode(String name, String description, int scrollsNeeded, int studyLevel, Class<? extends Building> b, ResearchNode... prereqs) {
         this.name = name;
         this.description = description;
         this.scrollsNeeded = scrollsNeeded;

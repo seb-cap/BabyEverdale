@@ -5,6 +5,9 @@ package everdale;
  */
 public class ClayStorage extends Storage {
 
+    public static int built = 0;
+    public static int max = 0;
+
     /**
      * The amount of Clay storage for each level of the ClayStorage. index = level.
      */

@@ -19,6 +19,11 @@ public class Village {
     public static final int Y_SIZE = 100;
 
     public final Kitchen k;
+    public final Study s;
+
+    private int villageXP = 6;
+    private int villageLevel = 1;
+    private final int[] requiredXP = new int[]{0, 8, 12, 18, 29, 41, 56, 74, 95, 116, 137, 161, 185, 209, 233, 263, 363};
 
     private Set<Coordinate> coords = new HashSet<>();
 
@@ -82,7 +87,8 @@ public class Village {
 
         this.build(this.getCoord(X_SIZE / 2, Y_SIZE / 2 - Y_SIZE / 10), new Patch(this.getCoord(X_SIZE / 2, Y_SIZE / 2 - Y_SIZE / 10)));
 
-        this.build(this.getCoord(X_SIZE / 2 + X_SIZE / 10, Y_SIZE / 2), new Study(this.getCoord(X_SIZE / 2 + X_SIZE / 10, Y_SIZE / 2)));
+        s = new Study(this.getCoord(X_SIZE / 2 + X_SIZE / 10, Y_SIZE / 2));
+        this.build(this.getCoord(X_SIZE / 2 + X_SIZE / 10, Y_SIZE / 2), s);
 
         // Storages
         this.storages = new ArrayList<>();
@@ -232,6 +238,7 @@ public class Village {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            this.xpUp();
         }
         return true;
     }
@@ -401,7 +408,28 @@ public class Village {
     public Map<Class<? extends Building>, Integer> getBuildables() {
         return this.buildables;
     }
+
     public List<Storage> getStorages() {
         return this.storages;
+    }
+
+    public int getVillageLevel() {
+        return this.villageLevel;
+    }
+
+    public int getVillageXP() {
+        return this.villageXP;
+    }
+
+    public int getNeededXP() {
+        return this.requiredXP[this.villageLevel];
+    }
+
+    public void xpUp() {
+        this.villageXP++;
+        if (this.villageXP >= this.requiredXP[this.villageLevel]) {
+            this.villageLevel++;
+            this.buildables.put(Study.class, this.villageLevel);
+        }
     }
 }
